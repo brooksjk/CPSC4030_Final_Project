@@ -1,7 +1,7 @@
 CRASH DATE,CRASH TIME,BOROUGH,ZIP CODE,LATITUDE,LONGITUDE,NUMBER OF PERSONS INJURED,NUMBER OF PERSONS KILLED,NUMBER OF PEDESTRIANS INJURED,NUMBER OF PEDESTRIANS KILLED,NUMBER OF CYCLIST INJURED,NUMBER OF CYCLIST KILLED,NUMBER OF MOTORIST INJURED,NUMBER OF MOTORIST KILLED,CONTRIBUTING FACTOR VEHICLE 1,CONTRIBUTING FACTOR VEHICLE 2,COLLISION_ID,VEHICLE TYPE CODE 1,VEHICLE TYPE CODE 2
 08/27/2021,9:15,Manhattan,10035.0,40.80574,-73.942764,1.0,1.0,1,1,0,0,0,0,Unspecified,,4457151,Sedan,
 09/11/2021,18:18,Brooklyn,11238.0,40.684204,-73.96806,3.0,1.0,1,1,0,0,2,0,Unsafe Speed,Unspecified,4457191,Sedan,Sedan
-12/17/2021,23:50,Staten island,10312.0,40.547924,-74.166954,1.0,1.0,0,0,0,0,1,1,Unsafe Speed,,4487497,Sedan,
+12/17/2021,23:50,Staten Island,10312.0,40.547924,-74.166954,1.0,1.0,0,0,0,0,1,1,Unsafe Speed,,4487497,Sedan,
 04/21/2021,0:55,Queens,11419.0,40.692135,-73.83485,3.0,1.0,0,0,0,0,3,1,Alcohol Involvement,Unspecified,4409176,Sedan,Pick-up Truck
 08/21/2021,8:07,Queens,11106.0,40.758125,-73.928505,1.0,1.0,0,0,0,0,1,1,Traffic Control Disregarded,Unspecified,4451296,Station Wagon/Sport Utility Vehicle,Motorcycle
 03/28/2022,8:25,Manhattan,10037.0,40.820435,-73.93623,2.0,1.0,1,1,0,0,1,0,Unspecified,Unspecified,4514342,Sedan,Station Wagon/Sport Utility Vehicle
@@ -30,21 +30,21 @@ CRASH DATE,CRASH TIME,BOROUGH,ZIP CODE,LATITUDE,LONGITUDE,NUMBER OF PERSONS INJU
 02/26/2022,2:33,Queens,11419.0,40.689003,-73.829346,2.0,1.0,0,0,0,0,2,1,Unsafe Speed,Unspecified,4506087,Sedan,Sedan
 03/04/2022,18:11,Brooklyn,11214.0,40.61157,-73.994606,1.0,1.0,1,1,0,0,0,0,Traffic Control Disregarded,,4507537,E-Bike,
 05/02/2022,2:47,Manhattan,10002.0,40.72293,-73.98865,3.0,1.0,0,1,0,0,3,0,Alcohol Involvement,Unspecified,4524167,Sedan,Taxi
-07/10/2022,20:47,Staten island,10309.0,40.508614,-74.22375,6.0,3.0,0,0,0,0,6,3,Unsafe Speed,Failure to Yield Right-of-Way,4545310,Sedan,Station Wagon/Sport Utility Vehicle
+07/10/2022,20:47,Staten Island,10309.0,40.508614,-74.22375,6.0,3.0,0,0,0,0,6,3,Unsafe Speed,Failure to Yield Right-of-Way,4545310,Sedan,Station Wagon/Sport Utility Vehicle
 07/17/2022,13:09,Queens,11691.0,40.59561,-73.77656,2.0,1.0,0,0,0,0,2,1,Unsafe Speed,Unsafe Speed,4546808,Motorcycle,Motorbike
 07/19/2022,14:25,Bronx,10472.0,40.829044,-73.87444,1.0,2.0,0,0,0,0,1,2,Unsafe Speed,Unspecified,4549200,Motorcycle,Station Wagon/Sport Utility Vehicle
 05/22/2022,22:47,Bronx,10468.0,40.86531,-73.90333,1.0,1.0,0,0,0,0,1,1,Traffic Control Disregarded,Unspecified,4530824,Station Wagon/Sport Utility Vehicle,Motorcycle
-05/26/2022,7:05,Staten island,10305.0,40.613373,-74.063255,2.0,1.0,1,1,0,0,1,0,Failure to Yield Right-of-Way,,4531423,Station Wagon/Sport Utility Vehicle,
+05/26/2022,7:05,Staten Island,10305.0,40.613373,-74.063255,2.0,1.0,1,1,0,0,1,0,Failure to Yield Right-of-Way,,4531423,Station Wagon/Sport Utility Vehicle,
 05/30/2022,10:18,Brooklyn,11204.0,40.608593,-73.975,3.0,1.0,0,1,0,0,3,0,Traffic Control Disregarded,Unspecified,4532525,Station Wagon/Sport Utility Vehicle,Taxi
 08/03/2022,4:00,Manhattan,10034.0,40.865795,-73.920006,5.0,2.0,0,2,0,0,5,0,Unsafe Speed,Unspecified,4552542,Sedan,Station Wagon/Sport Utility Vehicle
 07/17/2022,16:44,Manhattan,10026.0,40.804417,-73.955376,1.0,1.0,1,0,0,0,0,1,Traffic Control Disregarded,,4547098,Motorcycle,
 06/25/2022,19:10,Brooklyn,11233.0,40.684147,-73.922966,4.0,1.0,2,1,1,0,1,0,Unsafe Speed,Passing or Lane Usage Improper,4541939,Station Wagon/Sport Utility Vehicle,Station Wagon/Sport Utility Vehicle
 08/14/2022,21:22,Bronx,10463.0,40.87078,-73.90686,1.0,1.0,0,0,0,0,1,1,Driver Inexperience,Turning Improperly,4555472,Motorscooter,Sedan
-03/05/2021,6:38,Staten island,10304.0,40.59325,-74.11065,1.0,1.0,0,0,0,0,1,1,Unsafe Speed,,4396626,Sedan,
+03/05/2021,6:38,Staten Island,10304.0,40.59325,-74.11065,1.0,1.0,0,0,0,0,1,1,Unsafe Speed,,4396626,Sedan,
 04/04/2021,15:01,Brooklyn,11234.0,40.61877,-73.929794,9.0,1.0,0,0,0,0,9,1,Unsafe Speed,Unspecified,4404594,Sedan,Station Wagon/Sport Utility Vehicle
 12/09/2020,10:16,Brooklyn,11234.0,40.635483,-73.92381,1.0,1.0,0,1,0,0,1,0,Traffic Control Disregarded,Unspecified,4374651,Sedan,Sedan
 12/24/2020,19:09,Queens,11416.0,40.681484,-73.84788,2.0,1.0,0,0,0,0,2,1,Failure to Yield Right-of-Way,Driver Inattention/Distraction,4379386,Sedan,Station Wagon/Sport Utility Vehicle
-01/29/2021,7:46,Staten island,10305.0,40.603615,-74.06931,1.0,1.0,0,1,0,0,1,0,Unspecified,,4387617,Box Truck,
+01/29/2021,7:46,Staten Island,10305.0,40.603615,-74.06931,1.0,1.0,0,1,0,0,1,0,Unspecified,,4387617,Box Truck,
 01/01/2021,4:40,Queens,11691.0,40.601368,-73.760056,1.0,2.0,0,0,0,0,1,2,Unsafe Speed,Unspecified,4380776,Pick-up Truck,Station Wagon/Sport Utility Vehicle
 10/30/2020,17:18,Queens,11432.0,40.705147,-73.7957,3.0,2.0,3,2,0,0,0,0,Driver Inexperience,,4362781,Station Wagon/Sport Utility Vehicle,
 11/20/2020,11:45,Queens,11413.0,40.651405,-73.758896,2.0,2.0,0,0,0,0,2,2,Driver Inattention/Distraction,,4369300,Sedan,
@@ -74,9 +74,9 @@ CRASH DATE,CRASH TIME,BOROUGH,ZIP CODE,LATITUDE,LONGITUDE,NUMBER OF PERSONS INJU
 07/18/2020,17:30,Brooklyn,11222.0,40.732006,-73.95795,1.0,1.0,0,0,0,0,1,1,Driver Inexperience,,4330574,Motorcycle,
 05/22/2020,10:56,Queens,11413.0,40.682514,-73.75665,1.0,1.0,0,0,0,0,1,1,Unsafe Speed,Unspecified,4315230,Motorcycle,Sedan
 06/10/2020,15:44,Brooklyn,11212.0,40.654667,-73.907394,1.0,1.0,0,1,0,0,1,0,Illnes,,4319173,Station Wagon/Sport Utility Vehicle,
-06/13/2020,16:07,Staten island,10312.0,40.52257,-74.19001,3.0,1.0,0,0,0,0,3,1,Passing or Lane Usage Improper,Unspecified,4320868,Station Wagon/Sport Utility Vehicle,Station Wagon/Sport Utility Vehicle
+06/13/2020,16:07,Staten Island,10312.0,40.52257,-74.19001,3.0,1.0,0,0,0,0,3,1,Passing or Lane Usage Improper,Unspecified,4320868,Station Wagon/Sport Utility Vehicle,Station Wagon/Sport Utility Vehicle
 05/24/2020,20:09,Manhattan,10029.0,40.793816,-73.94012,4.0,1.0,1,0,0,0,3,1,Traffic Control Disregarded,Unspecified,4315469,Motorcycle,Station Wagon/Sport Utility Vehicle
-04/25/2020,20:01,Staten island,10312.0,40.544487,-74.176506,1.0,1.0,0,0,0,0,1,1,Traffic Control Disregarded,Unspecified,4310289,Station Wagon/Sport Utility Vehicle,Station Wagon/Sport Utility Vehicle
+04/25/2020,20:01,Staten Island,10312.0,40.544487,-74.176506,1.0,1.0,0,0,0,0,1,1,Traffic Control Disregarded,Unspecified,4310289,Station Wagon/Sport Utility Vehicle,Station Wagon/Sport Utility Vehicle
 06/27/2020,4:48,Manhattan,10031.0,40.826427,-73.950455,4.0,1.0,0,0,0,0,4,1,Unsafe Speed,Unspecified,4323817,Sedan,Sedan
 06/12/2020,15:44,Brooklyn,11236.0,40.643784,-73.90218,1.0,1.0,0,0,0,0,1,1,Unsafe Speed,Unspecified,4319587,Motorcycle,Station Wagon/Sport Utility Vehicle
 04/19/2020,1:30,Queens,11419.0,40.681923,-73.831924,2.0,1.0,0,0,0,0,2,1,Traffic Control Disregarded,Unspecified,4309394,Sedan,Station Wagon/Sport Utility Vehicle
@@ -88,7 +88,7 @@ CRASH DATE,CRASH TIME,BOROUGH,ZIP CODE,LATITUDE,LONGITUDE,NUMBER OF PERSONS INJU
 02/18/2020,17:49,Manhattan,10035.0,40.796356,-73.932205,1.0,1.0,0,1,1,0,0,0,Unspecified,,4290824,E-Scooter,
 01/25/2020,6:30,Manhattan,10013.0,40.71654,-73.996994,1.0,1.0,0,1,0,0,1,0,Unspecified,,4278630,Station Wagon/Sport Utility Vehicle,
 01/07/2020,6:52,Queens,11368.0,40.73716,-73.86405,1.0,1.0,1,1,0,0,0,0,Unspecified,,4269930,Flat Rack,
-01/04/2020,18:59,Staten island,10312.0,40.549496,-74.181244,1.0,1.0,0,0,0,0,1,1,Traffic Control Disregarded,Unspecified,4269925,Station Wagon/Sport Utility Vehicle,Taxi
+01/04/2020,18:59,Staten Island,10312.0,40.549496,-74.181244,1.0,1.0,0,0,0,0,1,1,Traffic Control Disregarded,Unspecified,4269925,Station Wagon/Sport Utility Vehicle,Taxi
 12/09/2019,9:35,Manhattan,10029.0,40.796,-73.93542,2.0,1.0,2,1,0,0,0,0,Failure to Yield Right-of-Way,,4254875,Pick-up Truck,
 12/11/2019,20:18,Queens,11377.0,40.75119,-73.90203,2.0,1.0,0,1,0,0,2,0,Alcohol Involvement,Unspecified,4256870,Station Wagon/Sport Utility Vehicle,Station Wagon/Sport Utility Vehicle
 12/08/2019,4:56,Brooklyn,11234.0,40.63742,-73.92401,1.0,1.0,0,0,0,0,1,1,Alcohol Involvement,Unspecified,4254178,Sedan,Sedan
@@ -112,7 +112,7 @@ CRASH DATE,CRASH TIME,BOROUGH,ZIP CODE,LATITUDE,LONGITUDE,NUMBER OF PERSONS INJU
 03/30/2019,16:21,Brooklyn,11234.0,40.62853,-73.9221,2.0,1.0,0,0,0,0,2,1,Traffic Control Disregarded,Unspecified,4105767,Sedan,Sedan
 02/05/2019,18:07,Queens,11362.0,40.755985,-73.72724,3.0,1.0,1,1,0,0,2,0,Driver Inattention/Distraction,,4075437,Station Wagon/Sport Utility Vehicle,
 01/20/2019,4:07,Manhattan,10032.0,40.833843,-73.94851,1.0,1.0,0,0,0,0,1,1,Unsafe Speed,Unspecified,4058662,Sedan,Sedan
-12/19/2018,17:41,Staten island,10312.0,40.53759,-74.158844,1.0,1.0,0,1,0,0,1,0,Unspecified,,4048562,Station Wagon/Sport Utility Vehicle,
+12/19/2018,17:41,Staten Island,10312.0,40.53759,-74.158844,1.0,1.0,0,1,0,0,1,0,Unspecified,,4048562,Station Wagon/Sport Utility Vehicle,
 08/27/2022,7:19,Queens,11691.0,40.60095,-73.753716,1.0,1.0,1,1,0,0,0,0,Aggressive Driving/Road Rage,,4559882,Sedan,
 12/29/2018,7:23,Manhattan,10013.0,40.722324,-74.01178,3.0,1.0,0,0,0,0,3,1,Unsafe Speed,Alcohol Involvement,4056090,Sedan,Sedan
 11/23/2018,21:30,Queens,11434.0,40.65616,-73.76736,1.0,1.0,0,0,0,0,1,1,Failure to Yield Right-of-Way,Unspecified,4031649,Sedan,Station Wagon/Sport Utility Vehicle
@@ -134,10 +134,10 @@ CRASH DATE,CRASH TIME,BOROUGH,ZIP CODE,LATITUDE,LONGITUDE,NUMBER OF PERSONS INJU
 06/24/2018,16:29,Brooklyn,11237.0,40.70476,-73.91996,1.0,1.0,1,1,0,0,0,0,Unspecified,,3928142,Station Wagon/Sport Utility Vehicle,
 05/26/2018,22:14,Queens,11429.0,40.702538,-73.73626,2.0,1.0,0,0,0,0,2,1,Unsafe Speed,Unspecified,3908480,Motorcycle,Station Wagon/Sport Utility Vehicle
 05/24/2018,23:06,Queens,11433.0,40.703293,-73.7961,2.0,1.0,0,0,0,0,2,1,Unsafe Speed,Unspecified,3911120,Sedan,Sedan
-05/27/2018,12:23,Staten island,10306.0,40.57322,-74.106995,1.0,1.0,0,0,0,0,1,1,Unsafe Speed,Unspecified,3912745,Sedan,Station Wagon/Sport Utility Vehicle
+05/27/2018,12:23,Staten Island,10306.0,40.57322,-74.106995,1.0,1.0,0,0,0,0,1,1,Unsafe Speed,Unspecified,3912745,Sedan,Station Wagon/Sport Utility Vehicle
 06/08/2018,7:10,Brooklyn,11212.0,40.65418,-73.91068,1.0,1.0,0,0,0,0,1,1,Unsafe Speed,Unspecified,3917226,Station Wagon/Sport Utility Vehicle,Motorcycle
 05/03/2018,7:10,Manhattan,10023.0,40.778477,-73.98546,1.0,1.0,0,1,0,0,1,0,Driver Inattention/Distraction,,3893656,Station Wagon/Sport Utility Vehicle,
-04/21/2018,3:05,Staten island,10310.0,40.62894,-74.116196,2.0,1.0,0,0,0,0,2,1,Traffic Control Disregarded,Unspecified,3890689,Station Wagon/Sport Utility Vehicle,Station Wagon/Sport Utility Vehicle
+04/21/2018,3:05,Staten Island,10310.0,40.62894,-74.116196,2.0,1.0,0,0,0,0,2,1,Traffic Control Disregarded,Unspecified,3890689,Station Wagon/Sport Utility Vehicle,Station Wagon/Sport Utility Vehicle
 03/05/2018,12:40,Brooklyn,11215.0,40.66917,-73.98631,4.0,2.0,3,2,0,0,1,0,Illnes,Unspecified,3856972,Sedan,Station Wagon/Sport Utility Vehicle
 03/02/2018,10:48,Brooklyn,11210.0,40.636387,-73.94611,1.0,1.0,0,0,0,0,1,1,Traffic Control Disregarded,Unspecified,3855433,Sedan,Sedan
 03/19/2018,5:05,Bronx,10457.0,40.851845,-73.893036,1.0,1.0,1,1,0,0,0,0,Aggressive Driving/Road Rage,Unspecified,3869405,Station Wagon/Sport Utility Vehicle,Sedan
@@ -152,7 +152,7 @@ CRASH DATE,CRASH TIME,BOROUGH,ZIP CODE,LATITUDE,LONGITUDE,NUMBER OF PERSONS INJU
 11/02/2017,17:37,Queens,11005.0,40.75628,-73.7211,2.0,1.0,0,0,0,0,2,1,Driver Inattention/Distraction,Unspecified,3782819,Station Wagon/Sport Utility Vehicle,Station Wagon/Sport Utility Vehicle
 10/31/2017,15:08,Manhattan,10014.0,40.729046,-74.01073,12.0,8.0,7,6,1,2,4,0,Other Vehicular,Unspecified,3782508,Flat Bed,Bus
 09/22/2017,23:34,Manhattan,10040.0,40.853115,-73.927246,1.0,1.0,0,0,0,0,1,1,Alcohol Involvement,Driver Inattention/Distraction,3756403,Station Wagon/Sport Utility Vehicle,Station Wagon/Sport Utility Vehicle
-10/06/2017,6:57,Staten island,10309.0,40.545456,-74.23052,3.0,1.0,0,0,0,0,3,1,Driver Inattention/Distraction,Unspecified,3764510,Station Wagon/Sport Utility Vehicle,Bus
+10/06/2017,6:57,Staten Island,10309.0,40.545456,-74.23052,3.0,1.0,0,0,0,0,3,1,Driver Inattention/Distraction,Unspecified,3764510,Station Wagon/Sport Utility Vehicle,Bus
 09/10/2017,9:06,Brooklyn,11218.0,40.641953,-73.9885,3.0,1.0,0,0,3,1,0,0,Alcohol Involvement,Unspecified,3747815,Bike,Station Wagon/Sport Utility Vehicle
 09/03/2017,3:45,Brooklyn,11213.0,40.669098,-73.93666,1.0,1.0,0,1,0,0,1,0,Alcohol Involvement,,3744710,Sedan,
 09/18/2017,6:17,Queens,11354.0,40.762978,-73.83198,15.0,4.0,3,2,0,0,12,2,Unsafe Speed,Unspecified,3752786,Bus,Bus
@@ -164,7 +164,7 @@ CRASH DATE,CRASH TIME,BOROUGH,ZIP CODE,LATITUDE,LONGITUDE,NUMBER OF PERSONS INJU
 04/29/2017,10:02,Bronx,10454.0,40.806164,-73.909134,3.0,1.0,0,0,0,0,3,1,Unspecified,Unspecified,3659456,Garbage or Refuse,Sedan
 04/13/2017,3:02,Bronx,10465.0,40.87831,-73.870155,1.0,1.0,0,0,0,0,1,1,Driver Inattention/Distraction,,3650467,Sedan,
 04/08/2017,20:35,Brooklyn,11212.0,40.67066,-73.904205,7.0,1.0,0,0,0,0,7,1,Unsafe Speed,Unspecified,3648680,Sedan,Sedan
-04/09/2017,14:00,Staten island,10301.0,40.611286,-74.108734,5.0,1.0,0,0,0,0,5,1,Driver Inattention/Distraction,Unspecified,3649309,Sedan,Sedan
+04/09/2017,14:00,Staten Island,10301.0,40.611286,-74.108734,5.0,1.0,0,0,0,0,5,1,Driver Inattention/Distraction,Unspecified,3649309,Sedan,Sedan
 03/01/2017,16:45,Queens,11106.0,40.758125,-73.928505,2.0,1.0,0,0,0,0,2,1,Unsafe Lane Changing,Unspecified,3624204,Sedan,Sedan
 03/16/2017,19:08,Bronx,10472.0,40.82842,-73.86068,2.0,1.0,2,1,0,0,0,0,Drugs (illegal),Unspecified,3633364,AMBULANCE,Station Wagon/Sport Utility Vehicle
 01/01/2017,3:17,Brooklyn,11204.0,40.608494,-73.97593,2.0,1.0,0,0,0,0,2,1,Failure to Yield Right-of-Way,Unsafe Speed,3590036,Sedan,Station Wagon/Sport Utility Vehicle
@@ -183,14 +183,14 @@ CRASH DATE,CRASH TIME,BOROUGH,ZIP CODE,LATITUDE,LONGITUDE,NUMBER OF PERSONS INJU
 06/19/2016,4:56,Bronx,10469.0,40.881744,-73.85706,6.0,1.0,0,0,0,0,6,1,Unsafe Speed,Passenger Distraction,3464286,4 dr sedan,Station Wagon/Sport Utility Vehicle
 06/06/2016,16:30,Manhattan,10018.0,40.754707,-73.99164,1.0,1.0,0,1,0,0,1,0,Failure to Yield Right-of-Way,,3458279,Station Wagon/Sport Utility Vehicle,
 05/24/2016,4:56,Brooklyn,11235.0,40.58036,-73.96761,1.0,1.0,0,0,0,0,1,1,Unsafe Speed,,3449637,4 dr sedan,
-05/14/2016,13:39,Staten island,10307.0,40.506187,-74.2349,1.0,1.0,0,0,0,0,1,1,Unsafe Speed,Driver Inattention/Distraction,3443656,Motorcycle,Station Wagon/Sport Utility Vehicle
+05/14/2016,13:39,Staten Island,10307.0,40.506187,-74.2349,1.0,1.0,0,0,0,0,1,1,Unsafe Speed,Driver Inattention/Distraction,3443656,Motorcycle,Station Wagon/Sport Utility Vehicle
 05/29/2016,14:16,Queens,11372.0,40.754612,-73.87667,1.0,1.0,0,0,0,0,1,1,Unsafe Speed,Unspecified,3452524,4 dr sedan,Station Wagon/Sport Utility Vehicle
 05/01/2016,12:46,Brooklyn,11236.0,40.63851,-73.8999,2.0,1.0,0,0,0,0,0,0,Driver Inattention/Distraction,Aggressive Driving/Road Rage,3434861,,
 05/09/2016,21:53,Brooklyn,11229.0,40.610096,-73.96138,2.0,1.0,0,0,0,0,0,0,Drugs (illegal),Driver Inattention/Distraction,3440035,,
 04/04/2016,9:00,Brooklyn,11232.0,40.661827,-73.9966,1.0,1.0,0,1,0,0,1,0,Passing Too Closely,Unspecified,3418063,PK,Station Wagon/Sport Utility Vehicle
 02/05/2016,18:34,Brooklyn,11213.0,40.6775631,-73.9330796,2.0,1.0,1,1,0,0,1,0,Traffic Control Disregarded,Unspecified,3384726,BUS,PASSENGER VEHICLE
 02/10/2016,12:16,Queens,11385.0,40.6966689,-73.8868099,1.0,1.0,0,0,0,0,1,1,Traffic Control Disregarded,,3386957,PASSENGER VEHICLE,
-01/16/2016,11:43,Staten island,10312.0,40.5266411,-74.1681321,1.0,1.0,0,0,0,0,1,1,Unspecified,Unspecified,3372149,MOTORCYCLE,SPORT UTILITY / STATION WAGON
+01/16/2016,11:43,Staten Island,10312.0,40.5266411,-74.1681321,1.0,1.0,0,0,0,0,1,1,Unspecified,Unspecified,3372149,MOTORCYCLE,SPORT UTILITY / STATION WAGON
 01/04/2016,5:20,Bronx,10466.0,40.8838608,-73.8558854,1.0,1.0,0,0,0,0,1,1,Traffic Control Disregarded,Unspecified,3364673,PASSENGER VEHICLE,SPORT UTILITY / STATION WAGON
 01/14/2016,17:46,Manhattan,10025.0,40.7940523,-73.9703673,1.0,1.0,0,1,0,0,1,0,Unspecified,,3370539,MOTORCYCLE,
 01/10/2016,4:18,Brooklyn,11233.0,40.6763431,-73.910927,1.0,1.0,0,1,0,0,1,0,Passenger Distraction,Unspecified,3368184,SPORT UTILITY / STATION WAGON,UNKNOWN
@@ -201,12 +201,12 @@ CRASH DATE,CRASH TIME,BOROUGH,ZIP CODE,LATITUDE,LONGITUDE,NUMBER OF PERSONS INJU
 12/06/2015,22:31,Queens,11377.0,40.7354867,-73.9174657,1.0,1.0,0,0,0,0,1,1,Traffic Control Disregarded,Unspecified,3348620,PASSENGER VEHICLE,TAXI
 12/06/2015,17:25,Brooklyn,11217.0,40.6863108,-73.9744391,2.0,1.0,2,1,0,0,0,0,Unsafe Speed,,3348512,SPORT UTILITY / STATION WAGON,
 12/01/2015,23:41,Bronx,10475.0,40.8853043,-73.8295323,2.0,1.0,0,1,0,0,2,0,Passenger Distraction,,3345259,PASSENGER VEHICLE,
-11/09/2015,11:15,Staten island,10305.0,40.5958903,-74.0858762,3.0,1.0,0,0,0,0,3,1,Physical Disability,Unspecified,3331427,PASSENGER VEHICLE,PASSENGER VEHICLE
+11/09/2015,11:15,Staten Island,10305.0,40.5958903,-74.0858762,3.0,1.0,0,0,0,0,3,1,Physical Disability,Unspecified,3331427,PASSENGER VEHICLE,PASSENGER VEHICLE
 10/14/2015,3:20,Bronx,10474.0,40.822533,-73.8850856,1.0,1.0,0,0,0,0,1,1,Traffic Control Disregarded,,3314885,PASSENGER VEHICLE,
 10/13/2015,13:15,Bronx,10475.0,40.8799484,-73.8233768,1.0,1.0,0,0,0,0,1,1,Unspecified,,3314919,PASSENGER VEHICLE,
 10/06/2015,17:33,Queens,11419.0,40.6913591,-73.8375359,4.0,1.0,2,1,0,0,2,0,Physical Disability,Unspecified,3310129,SPORT UTILITY / STATION WAGON,PASSENGER VEHICLE
 09/12/2015,1:51,Bronx,10462.0,40.8349018,-73.8399571,1.0,1.0,0,0,0,0,1,1,Traffic Control Disregarded,,3295640,MOTORCYCLE,
-09/14/2015,17:18,Staten island,10308.0,40.5512542,-74.1345595,1.0,1.0,0,0,1,1,0,0,Tow Hitch Defective,Unspecified,3297268,PICK-UP TRUCK,BICYCLE
+09/14/2015,17:18,Staten Island,10308.0,40.5512542,-74.1345595,1.0,1.0,0,0,1,1,0,0,Tow Hitch Defective,Unspecified,3297268,PICK-UP TRUCK,BICYCLE
 08/10/2015,16:24,Manhattan,10017.0,40.7542505,-73.9689773,3.0,1.0,2,1,0,0,1,0,Traffic Control Disregarded,,3274584,PASSENGER VEHICLE,
 08/05/2015,18:58,Bronx,10452.0,40.8401761,-73.9252686,1.0,1.0,0,0,1,1,0,0,Other Vehicular,Physical Disability,3272321,SPORT UTILITY / STATION WAGON,BICYCLE
 07/19/2015,18:11,Queens,11411.0,40.6889363,-73.7322397,3.0,1.0,0,0,0,0,3,1,Physical Disability,Unspecified,3261921,SPORT UTILITY / STATION WAGON,PASSENGER VEHICLE
@@ -224,17 +224,17 @@ CRASH DATE,CRASH TIME,BOROUGH,ZIP CODE,LATITUDE,LONGITUDE,NUMBER OF PERSONS INJU
 06/04/2015,17:32,Bronx,10461.0,40.853251,-73.8272179,2.0,1.0,0,0,0,0,2,1,Backing Unsafely,,3234227,SPORT UTILITY / STATION WAGON,
 05/12/2015,12:22,Bronx,10453.0,40.8476821,-73.9123638,1.0,1.0,0,0,0,0,1,1,Driver Inexperience,Prescription Medication,3219055,MOTORCYCLE,SPORT UTILITY / STATION WAGON
 05/17/2015,23:40,Bronx,10456.0,40.8378635,-73.9113938,2.0,1.0,0,1,0,0,2,0,Passenger Distraction,,3222927,SCOOTER,
-05/10/2015,22:50,Staten island,10308.0,40.5464206,-74.1414043,1.0,1.0,0,0,0,0,1,1,Physical Disability,Unspecified,3218830,SPORT UTILITY / STATION WAGON,SPORT UTILITY / STATION WAGON
+05/10/2015,22:50,Staten Island,10308.0,40.5464206,-74.1414043,1.0,1.0,0,0,0,0,1,1,Physical Disability,Unspecified,3218830,SPORT UTILITY / STATION WAGON,SPORT UTILITY / STATION WAGON
 05/04/2015,19:07,Brooklyn,11236.0,40.6420041,-73.8988296,1.0,1.0,0,0,0,0,1,1,Unspecified,Unspecified,3214283,PASSENGER VEHICLE,MOTORCYCLE
 04/26/2015,5:48,Brooklyn,11206.0,40.699405,-73.953369,2.0,1.0,0,0,0,0,2,1,Physical Disability,Unspecified,3209477,TAXI,SMALL COM VEH(4 TIRES) 
 04/02/2015,12:45,Manhattan,10027.0,40.8131597,-73.9503486,2.0,1.0,0,0,0,0,2,1,Following Too Closely,Driver Inattention/Distraction,3196270,SPORT UTILITY / STATION WAGON,PASSENGER VEHICLE
 04/18/2015,1:55,Bronx,10469.0,40.8814391,-73.8487484,3.0,1.0,0,0,0,0,3,1,Physical Disability,Unspecified,3204578,PASSENGER VEHICLE,PASSENGER VEHICLE
-03/02/2015,16:45,Staten island,10304.0,40.5903776,-74.1068782,1.0,1.0,0,0,0,0,1,1,Driver Inattention/Distraction,,3178808,PASSENGER VEHICLE,
+03/02/2015,16:45,Staten Island,10304.0,40.5903776,-74.1068782,1.0,1.0,0,0,0,0,1,1,Driver Inattention/Distraction,,3178808,PASSENGER VEHICLE,
 03/20/2015,18:34,Bronx,10456,40.8387216,-73.9137706,1.0,2.0,1,2,0,0,0,0,Following Too Closely,Unspecified,3189701,TAXI,SPORT UTILITY / STATION WAGON
 03/09/2015,0:06,Brooklyn,11216,40.6716376,-73.950335,4.0,1.0,0,1,0,0,4,0,Traffic Control Disregarded,Unspecified,3183233,PASSENGER VEHICLE,SPORT UTILITY / STATION WAGON
 02/11/2015,18:44,Manhattan,10001,40.7544905,-74.0067388,1.0,1.0,0,0,0,0,1,1,Unspecified,Unspecified,3167432,PASSENGER VEHICLE,PASSENGER VEHICLE
 01/05/2015,22:35,Brooklyn,11218,40.6413948,-73.9890784,1.0,1.0,1,1,0,0,0,0,Driver Inattention/Distraction,,3148157,SPORT UTILITY / STATION WAGON,
-12/22/2014,23:12,Staten island,10312,40.5239976,-74.1860995,3.0,1.0,0,0,0,0,3,1,Traffic Control Disregarded,Unspecified,3142248,SPORT UTILITY / STATION WAGON,SPORT UTILITY / STATION WAGON
+12/22/2014,23:12,Staten Island,10312,40.5239976,-74.1860995,3.0,1.0,0,0,0,0,3,1,Traffic Control Disregarded,Unspecified,3142248,SPORT UTILITY / STATION WAGON,SPORT UTILITY / STATION WAGON
 01/04/2015,17:04,Bronx,10466,40.8847353,-73.8404411,1.0,1.0,1,1,0,0,0,0,Unspecified,Unspecified,3147083,PASSENGER VEHICLE,UNKNOWN
 01/03/2015,19:15,Manhattan,10065,40.7641063,-73.966814,1.0,1.0,1,1,0,0,0,0,Unspecified,,3147008,SPORT UTILITY / STATION WAGON,
 01/14/2015,23:22,Queens,11694,40.5817949,-73.8492866,3.0,1.0,0,0,0,0,3,1,Traffic Control Disregarded,Unspecified,3153446,PASSENGER VEHICLE,PASSENGER VEHICLE
@@ -256,7 +256,7 @@ CRASH DATE,CRASH TIME,BOROUGH,ZIP CODE,LATITUDE,LONGITUDE,NUMBER OF PERSONS INJU
 07/25/2014,9:41,Manhattan,10128,40.7858664,-73.9509287,2.0,1.0,0,0,0,0,2,1,Driver Inattention/Distraction,Driver Inattention/Distraction,998342,MOTORCYCLE,AMBULANCE
 07/05/2014,4:38,Queens,11372,40.7486146,-73.8746312,2.0,1.0,0,1,0,0,2,0,Alcohol Involvement,Unspecified,362605,PASSENGER VEHICLE,PASSENGER VEHICLE
 07/27/2014,16:45,Queens,11106,40.7613564,-73.9353886,6.0,1.0,1,0,0,0,5,1,Fell Asleep,,999636,PASSENGER VEHICLE,
-06/09/2014,13:43,Staten island,10308,40.5438696,-74.1444428,1.0,1.0,1,1,0,0,0,0,Driver Inattention/Distraction,,349051,PASSENGER VEHICLE,
+06/09/2014,13:43,Staten Island,10308,40.5438696,-74.1444428,1.0,1.0,1,1,0,0,0,0,Driver Inattention/Distraction,,349051,PASSENGER VEHICLE,
 05/25/2014,3:33,Brooklyn,11230,40.6094167,-73.9676868,2.0,1.0,0,0,0,0,2,1,Unspecified,,340893,PASSENGER VEHICLE,
 05/19/2014,18:37,Brooklyn,11234,40.6098096,-73.9224976,2.0,2.0,0,0,0,0,2,2,Unspecified,Unspecified,338667,PASSENGER VEHICLE,SPORT UTILITY / STATION WAGON
 05/04/2014,5:11,Brooklyn,11236,40.6320498,-73.8968596,7.0,1.0,0,0,0,0,7,1,Driver Inattention/Distraction,Unspecified,329938,SPORT UTILITY / STATION WAGON,SPORT UTILITY / STATION WAGON
@@ -271,12 +271,12 @@ CRASH DATE,CRASH TIME,BOROUGH,ZIP CODE,LATITUDE,LONGITUDE,NUMBER OF PERSONS INJU
 04/04/2014,22:35,Queens,11105,40.7792798,-73.9008742,1.0,4.0,0,0,0,0,1,4,Driver Inexperience,,316814,PASSENGER VEHICLE,
 03/05/2014,17:00,Queens,11418,40.6966162,-73.8162064,2.0,1.0,0,0,0,0,2,1,Turning Improperly,Unspecified,208670,PASSENGER VEHICLE,PASSENGER VEHICLE
 02/23/2014,9:09,Brooklyn,11213,40.6667263,-73.9424445,2.0,1.0,0,1,0,0,2,0,Failure to Yield Right-of-Way,,155720,LARGE COM VEH(6 OR MORE TIRES),
-01/10/2014,19:16,Staten island,10306,40.5758147,-74.1197852,2.0,1.0,0,0,0,0,2,1,Unspecified,Unspecified,300664,PASSENGER VEHICLE,PASSENGER VEHICLE
+01/10/2014,19:16,Staten Island,10306,40.5758147,-74.1197852,2.0,1.0,0,0,0,0,2,1,Unspecified,Unspecified,300664,PASSENGER VEHICLE,PASSENGER VEHICLE
 01/12/2014,14:56,Brooklyn,11216,40.6789568,-73.954126,2.0,1.0,0,0,0,0,2,1,Unspecified,Unspecified,182331,SPORT UTILITY / STATION WAGON,PASSENGER VEHICLE
 01/10/2014,20:48,Manhattan,10025,40.7959275,-73.9727176,1.0,1.0,1,1,0,0,0,0,Failure to Yield Right-of-Way,,59451,TAXI,
 12/21/2013,16:07,Bronx,10461,40.8541998,-73.8544097,1.0,1.0,0,0,0,0,1,1,Traffic Control Disregarded,Unspecified,106348,MOTORCYCLE,PASSENGER VEHICLE
-12/14/2013,5:05,Staten island,10304,40.5952985,-74.1103789,2.0,1.0,0,0,0,0,2,1,Traffic Control Disregarded,Unspecified,300410,PASSENGER VEHICLE,OTHER
-12/27/2013,17:40,Staten island,10306,40.5647067,-74.1272083,1.0,1.0,0,1,0,0,1,0,Unspecified,,300548,SPORT UTILITY / STATION WAGON,
+12/14/2013,5:05,Staten Island,10304,40.5952985,-74.1103789,2.0,1.0,0,0,0,0,2,1,Traffic Control Disregarded,Unspecified,300410,PASSENGER VEHICLE,OTHER
+12/27/2013,17:40,Staten Island,10306,40.5647067,-74.1272083,1.0,1.0,0,1,0,0,1,0,Unspecified,,300548,SPORT UTILITY / STATION WAGON,
 12/31/2013,14:42,Queens,11358,40.7672226,-73.7936144,1.0,1.0,0,0,0,0,1,1,Traffic Control Disregarded,Physical Disability,253861,PASSENGER VEHICLE,PASSENGER VEHICLE
 11/30/2013,19:56,Brooklyn,11235,40.5888878,-73.9656409,8.0,1.0,0,0,0,0,8,1,Unspecified,Unspecified,115843,SPORT UTILITY / STATION WAGON,SPORT UTILITY / STATION WAGON
 11/26/2013,6:19,Queens,11434,40.6596509,-73.7738282,1.0,1.0,0,1,0,0,1,0,Unspecified,,226425,SPORT UTILITY / STATION WAGON,
@@ -298,7 +298,7 @@ CRASH DATE,CRASH TIME,BOROUGH,ZIP CODE,LATITUDE,LONGITUDE,NUMBER OF PERSONS INJU
 08/24/2013,3:00,Queens,11691,40.5933206,-73.7727134,1.0,2.0,0,0,0,0,1,2,Traffic Control Disregarded,Unspecified,203203,PASSENGER VEHICLE,PASSENGER VEHICLE
 08/24/2013,17:00,Brooklyn,11203,40.6494525,-73.9407657,1.0,1.0,0,0,0,0,1,1,Unspecified,Unspecified,138945,PASSENGER VEHICLE,PASSENGER VEHICLE
 08/15/2013,2:03,Brooklyn,11224,40.5764221,-73.9697655,1.0,1.0,0,0,0,0,1,1,Traffic Control Disregarded,,115380,SPORT UTILITY / STATION WAGON,
-08/09/2013,20:26,Staten island,10304,40.595951,-74.0958614,2.0,1.0,2,1,0,0,0,0,Unspecified,,299141,UNKNOWN,
+08/09/2013,20:26,Staten Island,10304,40.595951,-74.0958614,2.0,1.0,2,1,0,0,0,0,Unspecified,,299141,UNKNOWN,
 07/30/2013,1:07,Queens,11364.0,40.7357781,-73.7465392,1.0,1.0,0,0,0,0,1,1,Physical Disability,Unspecified,262382,MOTORCYCLE,BUS
 07/07/2013,2:44,Brooklyn,11230.0,40.6241708,-73.9704715,2.0,1.0,0,0,0,0,2,1,Traffic Control Disregarded,,132900,PASSENGER VEHICLE,
 06/24/2013,16:27,Bronx,10466.0,40.8968966,-73.8441665,1.0,1.0,1,1,0,0,0,0,Unspecified,Unspecified,97798,PASSENGER VEHICLE,SPORT UTILITY / STATION WAGON
@@ -319,7 +319,7 @@ CRASH DATE,CRASH TIME,BOROUGH,ZIP CODE,LATITUDE,LONGITUDE,NUMBER OF PERSONS INJU
 02/24/2013,1:48,Manhattan,10016,40.7413501,-73.9813106,1.0,1.0,0,1,0,0,1,0,Unspecified,Unspecified,23287,PASSENGER VEHICLE,TAXI
 01/26/2013,15:20,Brooklyn,11204,40.6162611,-73.9930807,1.0,1.0,1,1,0,0,0,0,Unspecified,,122858,SPORT UTILITY / STATION WAGON,
 02/06/2013,14:15,Manhattan,10031,40.8200975,-73.9550764,6.0,1.0,3,0,0,0,3,1,Failure to Yield Right-of-Way,Unspecified,65444,VAN,PASSENGER VEHICLE
-02/01/2013,19:32,Staten island,10306,40.5783776,-74.0940362,1.0,1.0,1,1,0,0,0,0,Failure to Yield Right-of-Way,,296394,SPORT UTILITY / STATION WAGON,
+02/01/2013,19:32,Staten Island,10306,40.5783776,-74.0940362,1.0,1.0,1,1,0,0,0,0,Failure to Yield Right-of-Way,,296394,SPORT UTILITY / STATION WAGON,
 01/20/2013,2:00,Manhattan,10010,40.7407326,-73.9817618,1.0,1.0,0,1,0,0,1,0,Driver Inattention/Distraction,Unspecified,23074,SPORT UTILITY / STATION WAGON,TAXI
 12/24/2012,18:39,Queens,11427,40.7312494,-73.7516764,1.0,1.0,0,0,0,0,1,1,Following Too Closely,,260716,PICK-UP TRUCK,
 01/05/2013,13:02,Bronx,10460,40.8438293,-73.8879185,1.0,1.0,0,1,0,0,1,0,Unspecified,,100720,PASSENGER VEHICLE,
@@ -338,7 +338,7 @@ CRASH DATE,CRASH TIME,BOROUGH,ZIP CODE,LATITUDE,LONGITUDE,NUMBER OF PERSONS INJU
 09/17/2012,20:31,Brooklyn,11230,40.6268409,-73.9684781,2.0,1.0,0,0,0,0,2,1,Driver Inattention/Distraction,Driver Inattention/Distraction,130513,PASSENGER VEHICLE,PASSENGER VEHICLE
 09/22/2012,22:31,Manhattan,10022,40.7629131,-73.9697999,2.0,1.0,1,1,0,0,1,0,Physical Disability,Unspecified,45850,PASSENGER VEHICLE,SPORT UTILITY / STATION WAGON
 09/15/2012,21:50,Brooklyn,11249,40.7056343,-73.9650938,2.0,1.0,1,1,0,0,1,0,Backing Unsafely,,194327,SPORT UTILITY / STATION WAGON,
-08/27/2012,19:05,Staten island,10312,40.5342669,-74.1539735,2.0,2.0,0,0,0,0,2,2,Traffic Control Disregarded,Unspecified,293916,SPORT UTILITY / STATION WAGON,SPORT UTILITY / STATION WAGON
+08/27/2012,19:05,Staten Island,10312,40.5342669,-74.1539735,2.0,2.0,0,0,0,0,2,2,Traffic Control Disregarded,Unspecified,293916,SPORT UTILITY / STATION WAGON,SPORT UTILITY / STATION WAGON
 08/23/2012,13:22,Manhattan,10004,40.70495,-74.0115487,3.0,1.0,2,1,0,0,1,0,Driver Inattention/Distraction,,516,SPORT UTILITY / STATION WAGON,
 08/21/2012,21:32,Bronx,10469,40.8675505,-73.8615031,3.0,1.0,0,0,0,0,3,1,Failure to Yield Right-of-Way,Unspecified,103051,PASSENGER VEHICLE,SPORT UTILITY / STATION WAGON
 09/05/2012,23:54,Brooklyn,11225,40.656762,-73.9601349,3.0,1.0,0,1,0,0,3,0,Unspecified,Unspecified,152745,PASSENGER VEHICLE,PASSENGER VEHICLE
@@ -357,7 +357,7 @@ CRASH DATE,CRASH TIME,BOROUGH,ZIP CODE,LATITUDE,LONGITUDE,NUMBER OF PERSONS INJU
 10/02/2022,12:23,Brooklyn,11228.0,40.615227,-74.01272,2.0,1.0,0,0,0,0,2,1,Failure to Yield Right-of-Way,Failure to Yield Right-of-Way,4569789,Station Wagon/Sport Utility Vehicle,Sedan
 06/07/2023,21:18,Brooklyn,11230.0,40.617004,-73.96912,1.0,1.0,1,1,0,0,0,0,Driver Inattention/Distraction,Unspecified,4636076,Sedan,Motorcycle
 10/14/2022,14:02,Brooklyn,11230.0,40.620605,-73.9586,3.0,1.0,0,0,0,0,3,1,Unsafe Speed,Driver Inexperience,4572961,Sedan,E- SCOOTER
-10/14/2022,6:30,Staten island,10314.0,40.62036,-74.1317,4.0,1.0,0,0,0,0,4,1,Traffic Control Disregarded,Unspecified,4572941,AMBULANCE,Station Wagon/Sport Utility Vehicle
+10/14/2022,6:30,Staten Island,10314.0,40.62036,-74.1317,4.0,1.0,0,0,0,0,4,1,Traffic Control Disregarded,Unspecified,4572941,AMBULANCE,Station Wagon/Sport Utility Vehicle
 02/17/2020,0:35,Manhattan,10035.0,40.8076,-73.93719,2.0,1.0,0,0,0,0,2,1,Unsafe Speed,Unspecified,4289784,Sedan,Sedan
 11/12/2022,11:15,Bronx,10451.0,40.818558,-73.92732,1.0,1.0,0,0,0,0,1,0,Unspecified,Unspecified,4581035,Station Wagon/Sport Utility Vehicle,E-Scooter
 06/20/2022,12:59,Manhattan,10001.0,40.746037,-73.9886,4.0,1.0,2,1,1,0,1,0,Traffic Control Disregarded,Unspecified,4539320,Station Wagon/Sport Utility Vehicle,Bike
