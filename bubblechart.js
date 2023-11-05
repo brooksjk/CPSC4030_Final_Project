@@ -1,56 +1,51 @@
-//useful source https://observablehq.com/@d3/bubble-chart/2
+//Link below used to help with general format of hoow to create bubble chart
+//https://multimedia.report/classes/coding/2018/exercises/basicbubblepackchart/
 
-d3.csv("cleaned_crash_data_zipc.txt").then(
-    
-    function(dataset){
-        
-        console.log(dataset)
+d3.csv("cleaned_crash_data_zipc.csv").then(function(dataset) {
+    dataset = dataset.map(function(d) { 
+        return {
+            value: +d["NUMBER OF PERSONS INJURED"] + +d["NUMBER OF PERSONS KILLED"],
+            category: d["CONTRIBUTING FACTOR VEHICLE 1"]
+        };
+    });
 
-        var dimensions = {
-            width: 800,
-            height: 500,
-            margin: {
-                top: 20,
-                bottom: 20,
-                right: 20,
-                left: 20
-            }
-        }
+    var diameter = 500,  //max size of a bubble
+        format = d3.format(",d"),
+        color = d3.scaleOrdinal(d3.schemeCategory10);
 
-        var svg = d3.select("#bubblechart")
-            .append("svg")
-            .attr("width", dimensions.width + dimensions.margin.left + dimensions.margin.right)
-            .attr("height", dimensions.height, dimensions.height + dimensions.margin.top + dimensions.margin.bottom)
-            .append("g")
-            .attr("transform", `translate(${dimensions.margin.left}, ${dimensions.margin.top})`);
+    var bubble = d3.pack()
+        .size([diameter, diameter])
+        .padding(1.5);
 
-        var xScale = d3.scaleLinear()
-            .domain([0, d3.max(dataset, d => d["NUMBER OF PERSONS INJURED"] + d["NUMBER OF PERSONS KILLED"])])
-            .range([0, dimensions.width]);
-      
-        var yScale = d3.scaleLinear()
-            .domain([0, dataset.length])
-            .range([0, dimensions.height]);
-        
-        
-        // Create bubbles based on the data
-        var bubbles = svg.selectAll(".bubble")
-            .data(dataset)
-            .enter()
-            .append("g") // Create a group for each bubble
-            .attr("class", "bubble")
-            .attr("transform", (d, i) => `translate(0, ${yScale(i)})`);
+    var svg = d3.select("#bubbleplot")
+        .append("svg")
+        .attr("width", diameter)
+        .attr("height", diameter)
+        .attr("class", "bubble");
 
-        bubbles.append("circle")
-            .attr("cx", d => xScale(d["NUMBER OF PERSONS INJURED"] + d["NUMBER OF PERSONS KILLED"]))
-            .attr("r", d => Math.sqrt(d["NUMBER OF PERSONS INJURED"] + d["NUMBER OF PERSONS KILLED"]))
-            .attr("fill", "steelblue");
+    var root = d3.hierarchy({ children: dataset })
+        .sum(function(d) { return d.value; })
+        .sort(function(a, b) { return b.value - a.value; });
 
-        // Add text labels to the bubbles
-        bubbles.append("text")
-            .attr("x", 10) // Adjust the x-position of the label
-            .attr("dy", "0.35em") // Vertical alignment
-            .text(d => d["CONTRIBUTING FACTOR VEHICLE 1"])
-            .style("font-size", "12px"); // Adjust the font size
-    }
-)
+    bubble(root);
+
+    var bubbles = svg.selectAll(".bubble")
+        .data(root.children)
+        .enter();
+
+    bubbles.append("circle")
+        .attr("class", "circle")
+        .attr("r", function(d) { return d.r; })
+        .attr("cx", function(d) { return d.x; })
+        .attr("cy", function(d) { return d.y; })
+        .style("fill", function(d) { return color(d.value); });
+
+    bubbles.append("text")
+        .attr("x", function(d) { return d.x; })
+        .attr("y", function(d) { return d.y + 5; })
+        .attr("text-anchor", "middle")
+        .text(function(d) { return d.data.category; })
+        .style("fill", "white")
+        .style("font-family", "Helvetica Neue, Helvetica, Arial, san-serif")
+        .style("font-size", "12px");
+});
