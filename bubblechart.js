@@ -45,7 +45,7 @@ d3.csv("cleaned_crash_data_zipc.csv").then(data => {
     let simulation = d3.forceSimulation(factors)
         .force("charge", d3.forceManyBody().strength(30))
         .force("center", d3.forceCenter(width / 2, height / 2))
-        .force("collision", d3.forceCollide().radius(d => radiusScale(d.count) + 3))
+        .force("collision", d3.forceCollide().radius(d => radiusScale(d.count) + 5))
         .on("tick", ticked);
     
     function ticked() {
