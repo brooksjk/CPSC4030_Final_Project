@@ -1,51 +1,78 @@
-//Link below used to help with general format of hoow to create bubble chart
-//https://multimedia.report/classes/coding/2018/exercises/basicbubblepackchart/
-
-d3.csv("cleaned_crash_data_zipc.csv").then(function(dataset) {
-    dataset = dataset.map(function(d) { 
-        return {
-            value: +d["NUMBER OF PERSONS INJURED"] + +d["NUMBER OF PERSONS KILLED"],
-            category: d["CONTRIBUTING FACTOR VEHICLE 1"]
-        };
+function countContributingFactors(data) {
+    let factorCounts = {};
+    data.forEach(row => {
+        let factor = row["CONTRIBUTING FACTOR VEHICLE 1"];
+        if (factor && factor.toLowerCase() !== "none") {
+            if (factorCounts[factor]) {
+                factorCounts[factor]++;
+            } else {
+                factorCounts[factor] = 1;
+            }
+        }
     });
+    return factorCounts;
+}
 
-    var diameter = 500,  //max size of a bubble
-        format = d3.format(",d"),
-        color = d3.scaleOrdinal(d3.schemeCategory10);
-
-    var bubble = d3.pack()
-        .size([diameter, diameter])
-        .padding(1.5);
-
-    var svg = d3.select("#bubbleplot")
-        .append("svg")
-        .attr("width", diameter)
-        .attr("height", diameter)
-        .attr("class", "bubble");
-
-    var root = d3.hierarchy({ children: dataset })
-        .sum(function(d) { return d.value; })
-        .sort(function(a, b) { return b.value - a.value; });
-
-    bubble(root);
-
-    var bubbles = svg.selectAll(".bubble")
-        .data(root.children)
-        .enter();
-
-    bubbles.append("circle")
-        .attr("class", "circle")
-        .attr("r", function(d) { return d.r; })
-        .attr("cx", function(d) { return d.x; })
-        .attr("cy", function(d) { return d.y; })
-        .style("fill", function(d) { return color(d.value); });
-
-    bubbles.append("text")
-        .attr("x", function(d) { return d.x; })
-        .attr("y", function(d) { return d.y + 5; })
-        .attr("text-anchor", "middle")
-        .text(function(d) { return d.data.category; })
-        .style("fill", "white")
-        .style("font-family", "Helvetica Neue, Helvetica, Arial, san-serif")
-        .style("font-size", "12px");
+d3.csv("cleaned_crash_data_zipc.csv").then(data => {
+    let factorCounts = countContributingFactors(data);
+    
+    console.log(factorCounts);
+    
+    const width = 1000;
+    const height = 1000;
+    
+    const svg = d3.select('#bubbles')
+        .attr('width', width)
+        .attr('height', height);
+    
+        let factors = Object.keys(factorCounts).map(key => ({
+        factor: key,
+        count: factorCounts[key]
+    }));
+    
+    let maxCount = d3.max(factors, d => d.count);
+    
+    let radiusScale = d3.scaleSqrt()
+        .domain([0, maxCount])
+        .range([10, 100]);
+    
+    let colorScale = d3.scaleLinear()
+        .domain([0, maxCount])
+        .range(["lightblue", "steelblue"]);
+    
+    const labelThreshold = 5;
+    
+    let simulation = d3.forceSimulation(factors)
+        .force("charge", d3.forceManyBody().strength(30))
+        .force("center", d3.forceCenter(width / 2, height / 2))
+        .force("collision", d3.forceCollide().radius(d => radiusScale(d.count) + 3))
+        .on("tick", ticked);
+    
+    function ticked() {
+        
+        let bubbles = svg.selectAll("circle")
+            .data(factors, d => d.factor);
+            bubbles.enter().append("circle")
+            .attr("r", d => radiusScale(d.count))
+            .attr("fill", d => colorScale(d.count))
+            .merge(bubbles)
+            .attr("cx", d => d.x)
+            .attr("cy", d => d.y);
+            bubbles.exit().remove();
+        
+        let labels = svg.selectAll("text")
+            .data(factors.filter(d => d.count >= labelThreshold), d => d.factor);
+            labels.enter().append("text")
+            .text(d => d.factor)
+            .attr("x", d => d.x)
+            .attr("y", d => d.y)
+            .attr("text-anchor", "middle")
+            .attr("alignment-baseline", "middle")
+            .attr("font-size", "10px")
+            .attr("fill", "black")
+            .merge(labels)
+            .attr("x", d => d.x)
+            .attr("y", d => d.y);
+            labels.exit().remove();
+    }
 });
