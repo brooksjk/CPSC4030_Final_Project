@@ -83,96 +83,126 @@ d3.csv("cleaned_crash_data_zipc.csv").then(data => {
     });
 });
 
+// Load and process the data
 d3.csv("cleaned_crash_data_zipc.csv").then(data => {
-  var dimensions = {
-    svgWidth: 800,
-    svgHeight: 700,
-    margin: {
-        top: 100,
-        right: 75,
-        bottom: 75,
-        left: 75
-    }
-  };
+    var dimensions = {
+        svgWidth: 800,
+        svgHeight: 700,
+        margin: {
+            top: 50,
+            right: 75,
+            bottom: 50,
+            left: 75
+        }
+    };
 
-  let timeCounts = {};
+    let attributes = [
+        // "NUMBER OF PERSONS INJURED",
+        // "NUMBER OF PERSONS KILLED",
+        "NUMBER OF PEDESTRIANS INJURED",
+        "NUMBER OF PEDESTRIANS KILLED",
+        "NUMBER OF CYCLIST INJURED",
+        "NUMBER OF CYCLIST KILLED",
+        "NUMBER OF MOTORIST INJURED",
+        "NUMBER OF MOTORIST KILLED"
+    ];
 
-  data.forEach(row => {
-      let time = row["CRASH TIME"].split(":")[0]
-      if (timeCounts[time]) {
-          timeCounts[time]++;
-      } else {
-          timeCounts[time] = 1;
-      }
-  });
+    let timeAttributesCounts = {};
+    attributes.forEach(attr => {
+        timeAttributesCounts[attr] = {};
+        for (let i = 0; i < 24; i++) { // Initialize counts for each hour to 0
+            timeAttributesCounts[attr][i] = 0;
+        }
+    });
 
-  const svg = d3.select("#times")
-      .attr("width", dimensions.svgWidth)
-      .attr("height", dimensions.svgHeight);
+    data.forEach(row => {
+        let time = parseInt(row["CRASH TIME"].split(":")[0]);
+        attributes.forEach(attr => {
+            let value = parseFloat(row[attr]);
+            if (!isNaN(value)) {
+                timeAttributesCounts[attr][time] += value;
+            }
+        });
+    });
 
-  const chartWidth = dimensions.svgWidth - dimensions.margin.left - dimensions.margin.right;
-  const chartHeight = dimensions.svgHeight - dimensions.margin.top - dimensions.margin.bottom;
+    const svg = d3.select("#times")
+        .attr("width", dimensions.svgWidth)
+        .attr("height", dimensions.svgHeight);
 
-  const xScale = d3.scaleLinear()
-      .domain([0, 23])
-      .range([0, chartWidth]);
+    const chartWidth = dimensions.svgWidth - dimensions.margin.left - dimensions.margin.right;
+    const chartHeight = dimensions.svgHeight - dimensions.margin.top - dimensions.margin.bottom;
 
-  const yScale = d3.scaleLinear()
-      .domain([0, d3.max(Object.values(timeCounts))])
-      .nice()
-      .range([chartHeight, 0]);
+    const xScale = d3.scaleLinear()
+        .domain([0, 23])
+        .range([0, chartWidth]);
 
-  const xAxis = d3.axisBottom(xScale)
-      .tickFormat(d => `${d}:00`);
+    let maxCount = Math.max(...attributes.map(attr => d3.max(Object.values(timeAttributesCounts[attr]))));
 
-  const yAxis = d3.axisLeft(yScale);
+    const yScale = d3.scaleLinear()
+        .domain([0, maxCount])
+        .nice()
+        .range([chartHeight, 0]);
 
-  const chart = svg.append("g")
-      .attr("transform", `translate(${dimensions.margin.left},${dimensions.margin.top})`);
+    const xAxis = d3.axisBottom(xScale).tickFormat(d => `${d}:00`);
+    const yAxis = d3.axisLeft(yScale);
 
-  chart.append("g")
-      .attr("class", "x-axis")
-      .attr("transform", `translate(0, ${chartHeight})`)
-      .call(xAxis);
+    const chart = svg.append("g")
+        .attr("transform", `translate(${dimensions.margin.left},${dimensions.margin.top})`);
 
-  chart.append("g")
-      .attr("class", "y-axis")
-      .call(yAxis);
+    chart.append("g")
+        .attr("class", "x-axis")
+        .attr("transform", `translate(0, ${chartHeight})`)
+        .call(xAxis);
 
-  const line = d3.line()
-      .x(d => xScale(d[0]))
-      .y(d => yScale(d[1]));
+    chart.append("g")
+        .attr("class", "y-axis")
+        .call(yAxis);
 
-  const timeData = Object.entries(timeCounts);
+    // Function to draw lines
+    const drawLine = (data, color, attributeName) => {
+        const line = d3.line()
+            .x(d => xScale(d[0]))
+            .y(d => yScale(d[1]));
 
-  chart.append("path")
-      .datum(timeData)
-      .attr("fill", "none")
-      .attr("stroke", "steelblue")
-      .attr("stroke-width", 2)
-      .attr("d", line);
+        chart.append("path")
+            .datum(data)
+            .attr("fill", "none")
+            .attr("stroke", color)
+            .attr("stroke-width", 2)
+            .attr("d", line)
+            .append("title") // Tooltip
+            .text(attributeName);
+    };
 
-  // Add labels and title
-  svg.append("text")
-      .attr("x", dimensions.svgWidth / 2)
-      .attr("y", dimensions.svgHeight - 20)
-      .style("text-anchor", "middle")
-      .text("Hour of the Day");
+    // Convert counts to an array of [hour, count] pairs and draw lines
+    attributes.forEach((attr, index) => {
+        const timeData = Object.entries(timeAttributesCounts[attr]).map(d => [parseInt(d[0]), d[1]]);
+        // Use a different color for each line
+        const color = d3.schemeCategory10[index % 10];
+        drawLine(timeData, color, attr);
+    });
 
-  svg.append("text")
-      .attr("transform", "rotate(-90)")
-      .attr("x", -dimensions.svgHeight / 2)
-      .attr("y", 20)
-      .style("text-anchor", "middle")
-      .text("Crash Counts");
+    // Add labels and title
+    svg.append("text")
+        .attr("x", dimensions.svgWidth / 2)
+        .attr("y", dimensions.svgHeight - 20)
+        .style("text-anchor", "middle")
+        .text("Hour of the Day");
 
-  // Add a chart title
-  svg.append("text")
-      .attr("x", dimensions.svgWidth / 2)
-      .attr("y", dimensions.margin.top)
-      .attr("text-anchor", "middle")
-      .style("font-size", "16px")
-      .text("Crash Counts by Hour of the Day");
+    svg.append("text")
+        .attr("transform", "rotate(-90)")
+        .attr("x", -dimensions.svgHeight / 2)
+        .attr("y", 20)
+        .style("text-anchor", "middle")
+        .text("Number of Incidents");
+
+    // Add a chart title
+    svg.append("text")
+        .attr("x", dimensions.svgWidth / 2)
+        .attr("y", dimensions.margin.top / 2)
+        .style("text-anchor", "middle")
+        .style("font-size", "24px")
+        .text("Traffic Incidents by Hour and Type");
 
 });
 
