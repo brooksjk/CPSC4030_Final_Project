@@ -1,15 +1,21 @@
-d3.csv("cleaned_crash_data_zipc.csv").then(data => {
+var dimensions = {
+    svgWidth: 700,
+    svgHeight: 700,
+    margin: {
+        top: 50,
+        right: 50,
+        bottom: 50,
+        left: 200
+    }
+};
 
-    var dimensions = {
-      svgWidth: 800,
-      svgHeight: 700,
-      mapFitWidth: 800,
-      mapFitHeight: 600,
-      legendX: 10,
-      legendY: 615,
-      legendWidth: 200,
-      legendHeight: 20,
-    };
+const maxCount = 500000;
+
+const colorScale = d3.scaleLinear()
+    .domain([0, maxCount])
+    .range(["#E0F8FF", "#000080"]);
+
+d3.csv("cleaned_crash_data_zipc.csv").then(data => {
 
     let boroughCounts = {};
 
@@ -27,14 +33,8 @@ d3.csv("cleaned_crash_data_zipc.csv").then(data => {
             .attr("width", dimensions.svgWidth)
             .attr("height", dimensions.svgHeight);
 
-        const projection = d3.geoMercator().fitSize([dimensions.mapFitWidth, dimensions.mapFitHeight], geoData);
+        const projection = d3.geoMercator().fitSize([dimensions.svgWidth, dimensions.svgHeight], geoData);
         const path = d3.geoPath().projection(projection);
-
-        const maxCount = 500000;
-
-        const colorScale = d3.scaleLinear()
-            .domain([0, maxCount])
-            .range(["#ffffff", "#013220"]); 
 
         svg.selectAll("path")
             .data(geoData.features)
@@ -46,35 +46,10 @@ d3.csv("cleaned_crash_data_zipc.csv").then(data => {
                 return colorScale(count);
             })
             .attr("stroke", "#000");
-
-        const gradient = svg.append("defs")
-            .append("linearGradient")
-            .attr("id", "gradient");
-
-        gradient.append("stop")
-            .attr("offset", "0%")
-            .attr("stop-color", "#ffffff")
-            .attr("stop-opacity", 1);
-
-        gradient.append("stop")
-            .attr("offset", "100%")
-            .attr("stop-color", "#013220")
-            .attr("stop-opacity", 1);
     });
 });
 
-// Load and process the data
 d3.csv("cleaned_crash_data_zipc.csv").then(data => {
-    var dimensions = {
-        svgWidth: 800,
-        svgHeight: 700,
-        margin: {
-            top: 50,
-            right: 75,
-            bottom: 50,
-            left: 75
-        }
-    };
 
     let attributes = [
         "NUMBER OF PERSONS INJURED",
@@ -90,7 +65,7 @@ d3.csv("cleaned_crash_data_zipc.csv").then(data => {
     let timeAttributesCounts = {};
     attributes.forEach(attr => {
         timeAttributesCounts[attr] = {};
-        for (let i = 0; i < 24; i++) { // Initialize counts for each hour to 0
+        for (let i = 0; i < 24; i++) { 
             timeAttributesCounts[attr][i] = 0;
         }
     });
@@ -138,7 +113,6 @@ d3.csv("cleaned_crash_data_zipc.csv").then(data => {
         .attr("class", "y-axis")
         .call(yAxis);
 
-    // Function to draw lines
     const drawLine = (data, color, attributeName) => {
         const line = d3.line()
             .x(d => xScale(d[0]))
@@ -150,19 +124,16 @@ d3.csv("cleaned_crash_data_zipc.csv").then(data => {
             .attr("stroke", color)
             .attr("stroke-width", 2)
             .attr("d", line)
-            .append("title") // Tooltip
+            .append("title") 
             .text(attributeName);
     };
 
-    // Convert counts to an array of [hour, count] pairs and draw lines
     attributes.forEach((attr, index) => {
         const timeData = Object.entries(timeAttributesCounts[attr]).map(d => [parseInt(d[0]), d[1]]);
-        // Use a different color for each line
         const color = d3.schemeCategory10[index % 10];
         drawLine(timeData, color, attr);
     });
 
-    // Add labels and title
     svg.append("text")
         .attr("x", dimensions.svgWidth / 2)
         .attr("y", dimensions.svgHeight - 20)
@@ -176,7 +147,6 @@ d3.csv("cleaned_crash_data_zipc.csv").then(data => {
         .style("text-anchor", "middle")
         .text("Number of Incidents");
 
-    // Add a chart title
     svg.append("text")
         .attr("x", dimensions.svgWidth / 2)
         .attr("y", dimensions.margin.top / 2)
@@ -203,16 +173,13 @@ function countContributingFactors(data) {
 
     return factorCounts;
 }
+
 d3.csv("cleaned_crash_data_zipc.csv").then(data => {
     let factorCounts = countContributingFactors(data);
-    console.log(factorCounts);
-
-    const width = 800;
-    const height = 700;
 
     const svg = d3.select('#bubbles')
-        .attr('width', width)
-        .attr('height', height);
+        .attr('width', dimensions.svgWidth)
+        .attr('height', dimensions.svgHeight);
 
     let factors = Object.keys(factorCounts).map(key => ({
         factor: key,
@@ -225,15 +192,11 @@ d3.csv("cleaned_crash_data_zipc.csv").then(data => {
         .domain([0, maxCount])
         .range([10, 100]); 
 
-    let colorScale = d3.scaleLinear()
-        .domain([0, maxCount])
-        .range(["lightblue", "steelblue"]);
-
     const labelThreshold = 5; 
 
     let simulation = d3.forceSimulation(factors)
         .force("charge", d3.forceManyBody().strength(15))
-        .force("center", d3.forceCenter(width / 2, height / 2))
+        .force("center", d3.forceCenter(dimensions.svgWidth / 2, dimensions.svgHeight / 2))
         .force("collision", d3.forceCollide().radius(d => radiusScale(d.count) + 1))
         .on("tick", ticked);
 
