@@ -143,7 +143,7 @@ d3.csv("cleaned_crash_data_zipc.csv").then(data => {
     svg.append("text")
         .attr("transform", "rotate(-90)")
         .attr("x", -dimensions.svgHeight / 2)
-        .attr("y", 20)
+        .attr("y", 60)
         .style("text-anchor", "middle")
         .text("Number of Incidents");
 
@@ -230,4 +230,86 @@ d3.csv("cleaned_crash_data_zipc.csv").then(data => {
 
         labels.exit().remove();
     }
+});
+
+function countContributingVeh(data) {
+    let factorCounts = {};
+
+    data.forEach(row => {
+        let factor = row["VEHICLE TYPE CODE 1"];
+        let factor2 = row["VEHICLE TYPE CODE 2"];
+        
+        if (factor != "none" && factor != "") { 
+            if (factorCounts[factor]) {
+                factorCounts[factor]++;
+            } else {
+                factorCounts[factor] = 1;
+            }
+        }
+        if (factor2 != "none" && factor != "" ) { 
+            if (factorCounts[factor2]) {
+                factorCounts[factor2]++;
+            } else {
+                factorCounts[factor2] = 1;
+            }
+        }
+    });
+
+    return factorCounts;
+}
+
+d3.csv("cleaned_crash_data_zipc.csv").then(data => {
+    let vehicleCounts = countContributingVeh(data);
+
+    // Filter out vehicle types with counts of 300 or less
+    let filteredVehicles = Object.entries(vehicleCounts)
+        .filter(([type, count]) => count > 3000)
+        .map(([type, count]) => ({
+            type,
+            count
+        }));
+
+    // Sort vehicles by count for better visual representation
+    filteredVehicles.sort((a, b) => b.count - a.count);
+
+    const margin = { top: 20, right: 20, bottom: 30, left: 150 };
+    const width = dimensions.svgWidth - margin.left - margin.right;
+    const height = dimensions.svgHeight - margin.top - margin.bottom;
+
+    // Append the SVG object to the body of the page
+    const svg = d3.select('#barchart')
+        .attr("width", dimensions.svgWidth)
+        .attr("height", dimensions.svgHeight)
+        .append("g")
+        .attr("transform", `translate(${margin.left},${margin.top})`);
+
+    // Define scales for the horizontal bar chart
+    let yScale = d3.scaleBand()
+        .domain(filteredVehicles.map(d => d.type))
+        .rangeRound([0, height])
+        .padding(0.1);
+
+    let xScale = d3.scaleLinear()
+        .domain([0, d3.max(filteredVehicles, d => d.count)])
+        .range([0, width]);
+
+    // Create horizontal bars
+    svg.selectAll(".bar")
+        .data(filteredVehicles)
+        .enter().append("rect")
+        .attr("class", "bar")
+        .attr("y", d => yScale(d.type))
+        .attr("x", 0)
+        .attr("height", yScale.bandwidth())
+        .attr("width", d => xScale(d.count))
+        .attr("fill", d => colorScale(d.count));
+
+    // Add y-axis
+    svg.append("g")
+        .call(d3.axisLeft(yScale));
+
+    // Add x-axis
+    svg.append("g")
+        .attr("transform", `translate(0,${height})`)
+        .call(d3.axisBottom(xScale));
 });
