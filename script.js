@@ -15,8 +15,22 @@ const colorScale = d3.scaleLinear()
     .domain([0, maxCount])
     .range(["#E0F8FF", "#000080"]);
 
-d3.csv("cleaned_crash_data_zipc.csv").then(data => {
+const attributes = [
+    "NUMBER OF PERSONS INJURED",
+    "NUMBER OF PERSONS KILLED",
+    "NUMBER OF PEDESTRIANS INJURED",
+    "NUMBER OF PEDESTRIANS KILLED",
+    "NUMBER OF CYCLIST INJURED",
+    "NUMBER OF CYCLIST KILLED",
+    "NUMBER OF MOTORIST INJURED",
+    "NUMBER OF MOTORIST KILLED"
+];
 
+const tooltip = d3.select("body").append("div")
+            .attr("class", "tooltip")
+            .style("opacity", 0);
+
+function getBoroCounts(data) {
     let boroughCounts = {};
 
     data.forEach(row => {
@@ -28,6 +42,81 @@ d3.csv("cleaned_crash_data_zipc.csv").then(data => {
         }
     });
 
+    return boroughCounts;
+}
+
+function getContibutingTimes(data) {
+
+    let timeAttributesCounts = {};
+    
+    attributes.forEach(attr => {
+        timeAttributesCounts[attr] = {};
+        for (let i = 0; i < 24; i++) { 
+            timeAttributesCounts[attr][i] = 0;
+        }
+    });
+
+    data.forEach(row => {
+        let time = parseInt(row["CRASH TIME"].split(":")[0]);
+        attributes.forEach(attr => {
+            let value = parseFloat(row[attr]);
+            if (!isNaN(value)) {
+                timeAttributesCounts[attr][time] += value;
+            }
+        });
+    });
+
+    return timeAttributesCounts;
+}
+
+function countContributingFactors(data) {
+    let factorCounts = {};
+
+    data.forEach(row => {
+        let factor = row["CONTRIBUTING FACTOR VEHICLE 1"];
+        if (factor != "none") { 
+            if (factorCounts[factor]) {
+                factorCounts[factor]++;
+            } else {
+                factorCounts[factor] = 1;
+            }
+        }
+    });
+
+    return factorCounts;
+}
+
+function countContributingVeh(data) {
+    let factorCounts = {};
+
+    data.forEach(row => {
+        let factor = row["VEHICLE TYPE CODE 1"];
+        let factor2 = row["VEHICLE TYPE CODE 2"];
+        
+        if (factor.length > 1) { 
+            if (factorCounts[factor]) {
+                factorCounts[factor]++;
+            } else {
+                factorCounts[factor] = 1;
+            }
+        }
+        if (factor2.length > 1) { 
+            if (factorCounts[factor2]) {
+                factorCounts[factor2]++;
+            } else {
+                factorCounts[factor2] = 1;
+            }
+        }
+    });
+
+    return factorCounts;
+}
+
+
+d3.csv("cleaned_crash_data_zipc.csv").then(data => {
+
+    boroughCounts = getBoroCounts(data);
+
     d3.json("Borough_Boundaries.geojson").then(geoData => {
         const svg = d3.select("#boroughs")
             .attr("width", dimensions.svgWidth)
@@ -35,10 +124,6 @@ d3.csv("cleaned_crash_data_zipc.csv").then(data => {
 
         const projection = d3.geoMercator().fitSize([dimensions.svgWidth, dimensions.svgHeight], geoData);
         const path = d3.geoPath().projection(projection);
-
-        const tooltip = d3.select("body").append("div")
-            .attr("class", "tooltip")
-            .style("opacity", 0);
 
         svg.selectAll("path")
             .data(geoData.features)
@@ -68,34 +153,7 @@ d3.csv("cleaned_crash_data_zipc.csv").then(data => {
 
 d3.csv("cleaned_crash_data_zipc.csv").then(data => {
 
-    let attributes = [
-        "NUMBER OF PERSONS INJURED",
-        "NUMBER OF PERSONS KILLED",
-        "NUMBER OF PEDESTRIANS INJURED",
-        "NUMBER OF PEDESTRIANS KILLED",
-        "NUMBER OF CYCLIST INJURED",
-        "NUMBER OF CYCLIST KILLED",
-        "NUMBER OF MOTORIST INJURED",
-        "NUMBER OF MOTORIST KILLED"
-    ];
-
-    let timeAttributesCounts = {};
-    attributes.forEach(attr => {
-        timeAttributesCounts[attr] = {};
-        for (let i = 0; i < 24; i++) { 
-            timeAttributesCounts[attr][i] = 0;
-        }
-    });
-
-    data.forEach(row => {
-        let time = parseInt(row["CRASH TIME"].split(":")[0]);
-        attributes.forEach(attr => {
-            let value = parseFloat(row[attr]);
-            if (!isNaN(value)) {
-                timeAttributesCounts[attr][time] += value;
-            }
-        });
-    });
+    timeAttributesCounts = getContibutingTimes(data)
 
     const svg = d3.select("#times")
         .attr("width", dimensions.svgWidth)
@@ -173,24 +231,6 @@ d3.csv("cleaned_crash_data_zipc.csv").then(data => {
 
 });
 
-
-function countContributingFactors(data) {
-    let factorCounts = {};
-
-    data.forEach(row => {
-        let factor = row["CONTRIBUTING FACTOR VEHICLE 1"];
-        if (factor != "none") { 
-            if (factorCounts[factor]) {
-                factorCounts[factor]++;
-            } else {
-                factorCounts[factor] = 1;
-            }
-        }
-    });
-
-    return factorCounts;
-}
-
 d3.csv("cleaned_crash_data_zipc.csv").then(data => {
     let factorCounts = countContributingFactors(data);
 
@@ -219,10 +259,6 @@ d3.csv("cleaned_crash_data_zipc.csv").then(data => {
 
     function ticked() {
 
-        const tooltip = d3.select("body").append("div")
-            .attr("class", "tooltip")
-            .style("opacity", 0);
-            
         let bubbles = svg.selectAll("circle")
             .data(factors, d => d.factor)
             .on('mouseover', (event, d) => {
@@ -266,32 +302,6 @@ d3.csv("cleaned_crash_data_zipc.csv").then(data => {
         labels.exit().remove();
     }
 });
-
-function countContributingVeh(data) {
-    let factorCounts = {};
-
-    data.forEach(row => {
-        let factor = row["VEHICLE TYPE CODE 1"];
-        let factor2 = row["VEHICLE TYPE CODE 2"];
-        
-        if (factor.length > 1) { 
-            if (factorCounts[factor]) {
-                factorCounts[factor]++;
-            } else {
-                factorCounts[factor] = 1;
-            }
-        }
-        if (factor2.length > 1) { 
-            if (factorCounts[factor2]) {
-                factorCounts[factor2]++;
-            } else {
-                factorCounts[factor2] = 1;
-            }
-        }
-    });
-
-    return factorCounts;
-}
 
 d3.csv("cleaned_crash_data_zipc.csv").then(data => {
     let vehicleCounts = countContributingVeh(data);
