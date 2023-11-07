@@ -36,6 +36,10 @@ d3.csv("cleaned_crash_data_zipc.csv").then(data => {
         const projection = d3.geoMercator().fitSize([dimensions.svgWidth, dimensions.svgHeight], geoData);
         const path = d3.geoPath().projection(projection);
 
+        const tooltip = d3.select("body").append("div")
+            .attr("class", "tooltip")
+            .style("opacity", 0);
+
         svg.selectAll("path")
             .data(geoData.features)
             .enter()
@@ -45,7 +49,20 @@ d3.csv("cleaned_crash_data_zipc.csv").then(data => {
                 const count = boroughCounts[d.properties.boro_name];
                 return colorScale(count);
             })
-            .attr("stroke", "#000");
+            .attr("stroke", "#000")
+            .on('mouseover', (event, d) => {
+                tooltip.transition()
+                    .duration(200)
+                    .style("opacity", .9);
+                tooltip.html("<b>" + d.properties.boro_name + ":</b><br/>" + (boroughCounts[d.properties.boro_name] || 0) + " crashes")
+                    .style("left", (event.pageX) + "px")
+                    .style("top", (event.pageY - 28) + "px");
+            })
+            .on('mouseout', () => {
+                tooltip.transition()
+                    .duration(500)
+                    .style("opacity", 0);
+            });
     });
 });
 
@@ -192,7 +209,7 @@ d3.csv("cleaned_crash_data_zipc.csv").then(data => {
         .domain([0, maxCount])
         .range([10, 100]); 
 
-    const labelThreshold = 5; 
+    const labelThreshold = 10000; 
 
     let simulation = d3.forceSimulation(factors)
         .force("charge", d3.forceManyBody().strength(15))
@@ -201,8 +218,26 @@ d3.csv("cleaned_crash_data_zipc.csv").then(data => {
         .on("tick", ticked);
 
     function ticked() {
+
+        const tooltip = d3.select("body").append("div")
+            .attr("class", "tooltip")
+            .style("opacity", 0);
+            
         let bubbles = svg.selectAll("circle")
-            .data(factors, d => d.factor);
+            .data(factors, d => d.factor)
+            .on('mouseover', (event, d) => {
+                tooltip.transition()
+                    .duration(200)
+                    .style("opacity", .9);
+                tooltip.html("<b>" + d.factor + ":</b><br/>" + d.count + " crashes")
+                    .style("left", (event.pageX) + "px")
+                    .style("top", (event.pageY - 28) + "px");
+            })
+            .on('mouseout', () => {
+                tooltip.transition()
+                    .duration(500)
+                    .style("opacity", 0);
+            });
 
         bubbles.enter().append("circle")
             .attr("r", d => radiusScale(d.count))
@@ -268,8 +303,6 @@ d3.csv("cleaned_crash_data_zipc.csv").then(data => {
             count
         }));
     
-    console.log(filteredVehicles)
-
     filteredVehicles.sort((a, b) => b.count - a.count);
 
     const margin = { top: 20, right: 20, bottom: 30, left: 150 };

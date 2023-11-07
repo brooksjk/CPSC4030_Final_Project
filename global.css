@@ -1,0 +1,19 @@
+.tooltip {
+    position: absolute;
+    text-align: center;
+    padding: 8px;
+    font: 14px sans-serif;
+    background: white;
+    border: 0px;
+    border-radius: 8px;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s;
+    z-index: 10; 
+}
+
+.tooltip b {
+    color: red;
+    font-weight: bold;
+    font-size: 16px; 
+}
