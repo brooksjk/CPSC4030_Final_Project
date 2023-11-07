@@ -1,11 +1,11 @@
 var dimensions = {
-    svgWidth: 700,
-    svgHeight: 700,
+    svgWidth: 600,
+    svgHeight: 600,
     margin: {
         top: 50,
         right: 50,
         bottom: 50,
-        left: 200
+        left: 100
     }
 };
 
@@ -239,14 +239,14 @@ function countContributingVeh(data) {
         let factor = row["VEHICLE TYPE CODE 1"];
         let factor2 = row["VEHICLE TYPE CODE 2"];
         
-        if (factor != "none" && factor != "") { 
+        if (factor.length > 1) { 
             if (factorCounts[factor]) {
                 factorCounts[factor]++;
             } else {
                 factorCounts[factor] = 1;
             }
         }
-        if (factor2 != "none" && factor != "" ) { 
+        if (factor2.length > 1) { 
             if (factorCounts[factor2]) {
                 factorCounts[factor2]++;
             } else {
@@ -261,29 +261,27 @@ function countContributingVeh(data) {
 d3.csv("cleaned_crash_data_zipc.csv").then(data => {
     let vehicleCounts = countContributingVeh(data);
 
-    // Filter out vehicle types with counts of 300 or less
     let filteredVehicles = Object.entries(vehicleCounts)
         .filter(([type, count]) => count > 3000)
         .map(([type, count]) => ({
             type,
             count
         }));
+    
+    console.log(filteredVehicles)
 
-    // Sort vehicles by count for better visual representation
     filteredVehicles.sort((a, b) => b.count - a.count);
 
     const margin = { top: 20, right: 20, bottom: 30, left: 150 };
     const width = dimensions.svgWidth - margin.left - margin.right;
     const height = dimensions.svgHeight - margin.top - margin.bottom;
 
-    // Append the SVG object to the body of the page
     const svg = d3.select('#barchart')
         .attr("width", dimensions.svgWidth)
         .attr("height", dimensions.svgHeight)
         .append("g")
         .attr("transform", `translate(${margin.left},${margin.top})`);
 
-    // Define scales for the horizontal bar chart
     let yScale = d3.scaleBand()
         .domain(filteredVehicles.map(d => d.type))
         .rangeRound([0, height])
@@ -293,7 +291,6 @@ d3.csv("cleaned_crash_data_zipc.csv").then(data => {
         .domain([0, d3.max(filteredVehicles, d => d.count)])
         .range([0, width]);
 
-    // Create horizontal bars
     svg.selectAll(".bar")
         .data(filteredVehicles)
         .enter().append("rect")
@@ -304,11 +301,9 @@ d3.csv("cleaned_crash_data_zipc.csv").then(data => {
         .attr("width", d => xScale(d.count))
         .attr("fill", d => colorScale(d.count));
 
-    // Add y-axis
     svg.append("g")
         .call(d3.axisLeft(yScale));
 
-    // Add x-axis
     svg.append("g")
         .attr("transform", `translate(0,${height})`)
         .call(d3.axisBottom(xScale));
