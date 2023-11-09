@@ -154,6 +154,7 @@ function drawBoroughsChart(boroughCounts, geoData, dimensions, colorScale) {
             const count = boroughCounts[d.properties.boro_name];
             return colorScale(count);
         })
+        .attr("class", "hover-border")
         .attr("stroke", "#000")
         .on('mouseover', (event, d) => {
             tooltip.transition()
@@ -278,6 +279,7 @@ function drawFactorsChart(factorCounts, dimensions, colorScale) {
 
         let bubbles = svg.selectAll("circle")
             .data(factors, d => d.factor)
+            .attr("class", "hover-border")
             .on('mouseover', (event, d) => {
                 tooltip.transition()
                     .duration(200)
@@ -352,6 +354,20 @@ function drawVehiclesChart(filteredVehicles, dimensions, colorScale) {
         .attr("height", yScale.bandwidth())
         .attr("width", d => xScale(d.count))
         .attr("fill", d => colorScale(d.count))
+        .attr("class", "hover-border")
+        .on('mouseover', (event, d) => {
+            tooltip.transition()
+                .duration(200)
+                .style("opacity", .9);
+            tooltip.html("<b>" + d.type + ":</b><br/>" + d.count + " crashes")
+                .style("left", (event.pageX) + "px")
+                .style("top", (event.pageY - 28) + "px");
+        })
+        .on('mouseout', () => {
+            tooltip.transition()
+                .duration(500)
+                .style("opacity", 0);
+        })
         .on('click', (event, d) => {
             alert("Vehicle name: " + d.type);
         });
@@ -363,3 +379,44 @@ function drawVehiclesChart(filteredVehicles, dimensions, colorScale) {
         .attr("transform", `translate(0,${height})`)
         .call(d3.axisBottom(xScale));
 };
+
+// d3.csv("cleaned_crash_data_zipc.csv").then(data => {
+
+//     var svgWidth = 600, svgHeight = 400;
+//     var padding = { top: 20, right: 40, bottom: 30, left: 50 };
+
+//     // Create SVG element
+//     var svg = d3.select('#funny') // This should be the selector to the element where you want to append the SVG
+//         .attr('width', svgWidth)
+//         .attr('height', svgHeight);
+
+//     // Set up scales
+//     var xScale = d3.scaleLinear()
+//         .domain(d3.extent(data, function (d) { return d.LONGITUDE; }))
+//         .range([padding.left, svgWidth - padding.right]);
+
+//     var yScale = d3.scaleLinear()
+//         .domain(d3.extent(data, function (d) { return d.LATITUDE; }))
+//         .range([svgHeight - padding.bottom, padding.top]);
+
+//     // Add X axis
+//     svg.append('g')
+//         .attr('transform', 'translate(0,' + (svgHeight - padding.bottom) + ')')
+//         .call(d3.axisBottom(xScale));
+
+//     // Add Y axis
+//     svg.append('g')
+//         .attr('transform', 'translate(' + padding.left + ',0)')
+//         .call(d3.axisLeft(yScale));
+
+//     // Add dots
+//     svg.append('g')
+//         .selectAll('dot')
+//         .data(data)
+//         .enter()
+//         .append('circle')
+//         .attr('cx', function (d) { return xScale(d.LONGITUDE); })
+//         .attr('cy', function (d) { return yScale(d.LATITUDE); })
+//         .attr('r', 3) // Radius of the dots
+//         .style('fill', '#69b3a2');
+// });

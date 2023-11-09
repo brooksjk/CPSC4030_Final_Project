@@ -17,3 +17,13 @@
     font-weight: bold;
     font-size: 16px; 
 }
+
+.hover-border {
+    cursor: pointer;
+  }
+  
+  .hover-border:hover {
+    stroke: red; /* SVG elements use 'stroke' instead of 'border' */
+    stroke-width: 3px; /* Makes the stroke 'bold' */
+  }
+  
