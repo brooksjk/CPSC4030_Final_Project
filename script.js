@@ -27,8 +27,8 @@ const attributes = [
 ];
 
 const tooltip = d3.select("body").append("div")
-            .attr("class", "tooltip")
-            .style("opacity", 0);
+    .attr("class", "tooltip")
+    .style("opacity", 0);
 
 
 d3.csv("cleaned_crash_data_zipc.csv").then(data => {
@@ -40,7 +40,7 @@ d3.csv("cleaned_crash_data_zipc.csv").then(data => {
     drawTimesChart(timeCounts, dimensions);
     drawFactorsChart(bubbleCounts, dimensions, colorScale);
     drawVehiclesChart(vehicleCounts, dimensions, colorScale);
-    
+
     d3.json("Borough_Boundaries.geojson").then(geoData => {
         drawBoroughsChart(boroughCounts, geoData, dimensions, colorScale);
     });
@@ -63,12 +63,11 @@ function bouroughCount(data) {
 }
 
 function timesCount(data) {
-
     let timeAttributesCounts = {};
-    
+
     attributes.forEach(attr => {
         timeAttributesCounts[attr] = {};
-        for (let i = 0; i < 24; i++) { 
+        for (let i = 0; i < 24; i++) {
             timeAttributesCounts[attr][i] = 0;
         }
     });
@@ -91,7 +90,7 @@ function factorsCount(data) {
 
     data.forEach(row => {
         let factor = row["CONTRIBUTING FACTOR VEHICLE 1"];
-        if (factor != "none") { 
+        if (factor != "none") {
             if (factorCounts[factor]) {
                 factorCounts[factor]++;
             } else {
@@ -104,29 +103,38 @@ function factorsCount(data) {
 }
 
 function vehiclesCount(data) {
-    let factorCounts = {};
+    let vehicleCounts = {};
 
     data.forEach(row => {
         let factor = row["VEHICLE TYPE CODE 1"];
         let factor2 = row["VEHICLE TYPE CODE 2"];
-        
-        if (factor.length > 1) { 
-            if (factorCounts[factor]) {
-                factorCounts[factor]++;
+
+        if (factor.length > 1) {
+            if (vehicleCounts[factor]) {
+                vehicleCounts[factor]++;
             } else {
-                factorCounts[factor] = 1;
+                vehicleCounts[factor] = 1;
             }
         }
-        if (factor2.length > 1) { 
-            if (factorCounts[factor2]) {
-                factorCounts[factor2]++;
+        if (factor2.length > 1) {
+            if (vehicleCounts[factor2]) {
+                vehicleCounts[factor2]++;
             } else {
-                factorCounts[factor2] = 1;
+                vehicleCounts[factor2] = 1;
             }
         }
     });
 
-    return factorCounts;
+    let filteredVehicles = Object.entries(vehicleCounts)
+        .filter(([type, count]) => count > 3000)
+        .map(([type, count]) => ({
+            type,
+            count
+        }));
+
+    filteredVehicles.sort((a, b) => b.count - a.count);
+
+    return filteredVehicles;
 }
 
 function drawBoroughsChart(boroughCounts, geoData, dimensions, colorScale) {
@@ -159,6 +167,9 @@ function drawBoroughsChart(boroughCounts, geoData, dimensions, colorScale) {
             tooltip.transition()
                 .duration(500)
                 .style("opacity", 0);
+        })
+        .on('click', (event, d) => {
+            alert("Borough name: " + d.properties.boro_name);
         });
 }
 
@@ -208,7 +219,7 @@ function drawTimesChart(timeCounts, dimensions) {
             .attr("stroke", color)
             .attr("stroke-width", 2)
             .attr("d", line)
-            .append("title") 
+            .append("title")
             .text(attributeName);
     };
 
@@ -253,9 +264,9 @@ function drawFactorsChart(factorCounts, dimensions, colorScale) {
 
     let radiusScale = d3.scaleSqrt()
         .domain([0, maxCount])
-        .range([10, 100]); 
+        .range([10, 100]);
 
-    const labelThreshold = 10000; 
+    const labelThreshold = 10000;
 
     let simulation = d3.forceSimulation(factors)
         .force("charge", d3.forceManyBody().strength(15))
@@ -279,6 +290,9 @@ function drawFactorsChart(factorCounts, dimensions, colorScale) {
                 tooltip.transition()
                     .duration(500)
                     .style("opacity", 0);
+            })
+            .on('click', (event, d) => {
+                alert("Factor name: " + d.factor);
             });
 
         bubbles.enter().append("circle")
@@ -300,7 +314,7 @@ function drawFactorsChart(factorCounts, dimensions, colorScale) {
             .attr("text-anchor", "middle")
             .attr("alignment-baseline", "middle")
             .attr("font-size", "10px")
-            .attr("fill", "black") 
+            .attr("fill", "black")
             .merge(labels)
             .attr("x", d => d.x)
             .attr("y", d => d.y);
@@ -309,16 +323,7 @@ function drawFactorsChart(factorCounts, dimensions, colorScale) {
     }
 };
 
-function drawVehiclesChart(vehicleCounts, dimensions, colorScale) {
-    let filteredVehicles = Object.entries(vehicleCounts)
-        .filter(([type, count]) => count > 3000)
-        .map(([type, count]) => ({
-            type,
-            count
-        }));
-    
-    filteredVehicles.sort((a, b) => b.count - a.count);
-
+function drawVehiclesChart(filteredVehicles, dimensions, colorScale) {
     const margin = { top: 20, right: 20, bottom: 30, left: 150 };
     const width = dimensions.svgWidth - margin.left - margin.right;
     const height = dimensions.svgHeight - margin.top - margin.bottom;
@@ -346,7 +351,10 @@ function drawVehiclesChart(vehicleCounts, dimensions, colorScale) {
         .attr("x", 0)
         .attr("height", yScale.bandwidth())
         .attr("width", d => xScale(d.count))
-        .attr("fill", d => colorScale(d.count));
+        .attr("fill", d => colorScale(d.count))
+        .on('click', (event, d) => {
+            alert("Vehicle name: " + d.type);
+        });
 
     svg.append("g")
         .call(d3.axisLeft(yScale));
