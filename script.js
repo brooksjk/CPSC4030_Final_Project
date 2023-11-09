@@ -30,7 +30,24 @@ const tooltip = d3.select("body").append("div")
             .attr("class", "tooltip")
             .style("opacity", 0);
 
-function getBoroCounts(data) {
+
+d3.csv("cleaned_crash_data_zipc.csv").then(data => {
+    const boroughCounts = bouroughCount(data);
+    const timeCounts = timesCount(data);
+    const bubbleCounts = factorsCount(data);
+    const vehicleCounts = vehiclesCount(data);
+
+    drawTimesChart(timeCounts, dimensions);
+    drawFactorsChart(bubbleCounts, dimensions, colorScale);
+    drawVehiclesChart(vehicleCounts, dimensions, colorScale);
+    
+    d3.json("Borough_Boundaries.geojson").then(geoData => {
+        drawBoroughsChart(boroughCounts, geoData, dimensions, colorScale);
+    });
+
+});
+
+function bouroughCount(data) {
     let boroughCounts = {};
 
     data.forEach(row => {
@@ -45,7 +62,7 @@ function getBoroCounts(data) {
     return boroughCounts;
 }
 
-function getContibutingTimes(data) {
+function timesCount(data) {
 
     let timeAttributesCounts = {};
     
@@ -69,7 +86,7 @@ function getContibutingTimes(data) {
     return timeAttributesCounts;
 }
 
-function countContributingFactors(data) {
+function factorsCount(data) {
     let factorCounts = {};
 
     data.forEach(row => {
@@ -86,7 +103,7 @@ function countContributingFactors(data) {
     return factorCounts;
 }
 
-function countContributingVeh(data) {
+function vehiclesCount(data) {
     let factorCounts = {};
 
     data.forEach(row => {
@@ -112,48 +129,40 @@ function countContributingVeh(data) {
     return factorCounts;
 }
 
+function drawBoroughsChart(boroughCounts, geoData, dimensions, colorScale) {
+    const svg = d3.select("#boroughs")
+        .attr("width", dimensions.svgWidth)
+        .attr("height", dimensions.svgHeight);
 
-d3.csv("cleaned_crash_data_zipc.csv").then(data => {
+    const projection = d3.geoMercator().fitSize([dimensions.svgWidth, dimensions.svgHeight], geoData);
+    const path = d3.geoPath().projection(projection);
 
-    boroughCounts = getBoroCounts(data);
+    svg.selectAll("path")
+        .data(geoData.features)
+        .enter()
+        .append("path")
+        .attr("d", path)
+        .attr("fill", d => {
+            const count = boroughCounts[d.properties.boro_name];
+            return colorScale(count);
+        })
+        .attr("stroke", "#000")
+        .on('mouseover', (event, d) => {
+            tooltip.transition()
+                .duration(200)
+                .style("opacity", .9);
+            tooltip.html("<b>" + d.properties.boro_name + ":</b><br/>" + (boroughCounts[d.properties.boro_name] || 0) + " crashes")
+                .style("left", (event.pageX) + "px")
+                .style("top", (event.pageY - 28) + "px");
+        })
+        .on('mouseout', () => {
+            tooltip.transition()
+                .duration(500)
+                .style("opacity", 0);
+        });
+}
 
-    d3.json("Borough_Boundaries.geojson").then(geoData => {
-        const svg = d3.select("#boroughs")
-            .attr("width", dimensions.svgWidth)
-            .attr("height", dimensions.svgHeight);
-
-        const projection = d3.geoMercator().fitSize([dimensions.svgWidth, dimensions.svgHeight], geoData);
-        const path = d3.geoPath().projection(projection);
-
-        svg.selectAll("path")
-            .data(geoData.features)
-            .enter()
-            .append("path")
-            .attr("d", path)
-            .attr("fill", d => {
-                const count = boroughCounts[d.properties.boro_name];
-                return colorScale(count);
-            })
-            .attr("stroke", "#000")
-            .on('mouseover', (event, d) => {
-                tooltip.transition()
-                    .duration(200)
-                    .style("opacity", .9);
-                tooltip.html("<b>" + d.properties.boro_name + ":</b><br/>" + (boroughCounts[d.properties.boro_name] || 0) + " crashes")
-                    .style("left", (event.pageX) + "px")
-                    .style("top", (event.pageY - 28) + "px");
-            })
-            .on('mouseout', () => {
-                tooltip.transition()
-                    .duration(500)
-                    .style("opacity", 0);
-            });
-    });
-});
-
-d3.csv("cleaned_crash_data_zipc.csv").then(data => {
-
-    timeAttributesCounts = getContibutingTimes(data)
+function drawTimesChart(timeCounts, dimensions) {
 
     const svg = d3.select("#times")
         .attr("width", dimensions.svgWidth)
@@ -166,7 +175,7 @@ d3.csv("cleaned_crash_data_zipc.csv").then(data => {
         .domain([0, 23])
         .range([0, chartWidth]);
 
-    let maxCount = Math.max(...attributes.map(attr => d3.max(Object.values(timeAttributesCounts[attr]))));
+    let maxCount = Math.max(...attributes.map(attr => d3.max(Object.values(timeCounts[attr]))));
 
     const yScale = d3.scaleLinear()
         .domain([0, maxCount])
@@ -188,13 +197,13 @@ d3.csv("cleaned_crash_data_zipc.csv").then(data => {
         .attr("class", "y-axis")
         .call(yAxis);
 
-    const drawLine = (data, color, attributeName) => {
+    const drawLine = (timeCounts, color, attributeName) => {
         const line = d3.line()
             .x(d => xScale(d[0]))
             .y(d => yScale(d[1]));
 
         chart.append("path")
-            .datum(data)
+            .datum(timeCounts)
             .attr("fill", "none")
             .attr("stroke", color)
             .attr("stroke-width", 2)
@@ -204,7 +213,7 @@ d3.csv("cleaned_crash_data_zipc.csv").then(data => {
     };
 
     attributes.forEach((attr, index) => {
-        const timeData = Object.entries(timeAttributesCounts[attr]).map(d => [parseInt(d[0]), d[1]]);
+        const timeData = Object.entries(timeCounts[attr]).map(d => [parseInt(d[0]), d[1]]);
         const color = d3.schemeCategory10[index % 10];
         drawLine(timeData, color, attr);
     });
@@ -213,26 +222,23 @@ d3.csv("cleaned_crash_data_zipc.csv").then(data => {
         .attr("x", dimensions.svgWidth / 2)
         .attr("y", dimensions.svgHeight - 20)
         .style("text-anchor", "middle")
-        .text("Hour of the Day");
-
-    svg.append("text")
+        .text("Hour of the Day")
+        .append("text")
         .attr("transform", "rotate(-90)")
         .attr("x", -dimensions.svgHeight / 2)
         .attr("y", 60)
         .style("text-anchor", "middle")
-        .text("Number of Incidents");
-
-    svg.append("text")
+        .text("Number of Incidents")
+        .append("text")
         .attr("x", dimensions.svgWidth / 2)
         .attr("y", dimensions.margin.top / 2)
         .style("text-anchor", "middle")
         .style("font-size", "24px")
         .text("Traffic Incidents by Hour and Type");
 
-});
+};
 
-d3.csv("cleaned_crash_data_zipc.csv").then(data => {
-    let factorCounts = countContributingFactors(data);
+function drawFactorsChart(factorCounts, dimensions, colorScale) {
 
     const svg = d3.select('#bubbles')
         .attr('width', dimensions.svgWidth)
@@ -301,11 +307,9 @@ d3.csv("cleaned_crash_data_zipc.csv").then(data => {
 
         labels.exit().remove();
     }
-});
+};
 
-d3.csv("cleaned_crash_data_zipc.csv").then(data => {
-    let vehicleCounts = countContributingVeh(data);
-
+function drawVehiclesChart(vehicleCounts, dimensions, colorScale) {
     let filteredVehicles = Object.entries(vehicleCounts)
         .filter(([type, count]) => count > 3000)
         .map(([type, count]) => ({
@@ -350,4 +354,4 @@ d3.csv("cleaned_crash_data_zipc.csv").then(data => {
     svg.append("g")
         .attr("transform", `translate(0,${height})`)
         .call(d3.axisBottom(xScale));
-});
+};
