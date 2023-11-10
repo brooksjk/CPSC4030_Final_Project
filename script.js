@@ -31,7 +31,7 @@ const tooltip = d3.select("body").append("div")
     .style("opacity", 0);
 
 
-d3.csv("cleaned_crash_data_zipc.csv").then(data => {
+d3.csv("2_cleaned_crash_data.csv").then(data => {
     const boroughCounts = bouroughCount(data);
     const timeCounts = timesCount(data);
     const bubbleCounts = factorsCount(data);
