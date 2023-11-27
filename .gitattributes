@@ -1,3 +1,2 @@
 .csv filter=lfs diff=lfs merge=lfs -text
-*.csv filter=lfs diff=lfs merge=lfs -text
 cleaned_crash_data_zipc.csv filter=lfs diff=lfs merge=lfs -text
