@@ -1,9 +1,7 @@
 # Navigating Road Safety: A Data-Driven Exploration of Motor Vehicle Collisions in NYC
 Data Visualization project completed over the course of the Fall 2023 Semester
 
-Group Members: Jordyn Brooks, Evan Kessler, Michael Reed
-
-Project Report: <https://docs.google.com/document/d/1mIyR2QH3yoJXRMxj5x4j202rxkz1p2BgtmO8ua5EAQo/edit?usp=sharing>
+Group Members: Jordyn Brooks, Michael Reed
 
 Project Website: <https://brooksjk.github.io/CPSC4030_Final_Project/>
 
